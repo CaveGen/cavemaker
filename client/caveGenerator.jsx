@@ -42,6 +42,7 @@ function Cavern() {
             arr = smoothWalls(arr, length);
         }
 
+
         return arr;
     }
 
