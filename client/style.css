@@ -1,55 +1,68 @@
 body {
-    background-color: rgb(8, 7, 4);
+	background-color: rgb(77, 70, 8);
 }
 
-h1 {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: whitesmoke
+/* h1 {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+} */
+
+.mainContainer {
+	height: 100vh;
+	display: grid;
+	grid-template: auto / repeat(5, 1fr);
+	grid-template-areas:
+		'banner banner banner banner banner'
+		'sliders nav nav nav saved'
+		'sliders map map map saved'
+		'sliders map map map saved'
+		'sliders map map map saved'
+		'footer footer footer footer footer';
 }
 
-label {
-    color: whitesmoke
+#nav {
+	background-color: purple;
+	grid-area: nav;
 }
 
-.login-signup {
-    margin-top: 35vh;
+#banner {
+	background-color: red;
+	grid-area: banner;
 }
 
-#board-wrapper {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+#sliders {
+	background-color: orange;
+	grid-area: sliders;
 }
+
+#map {
+	background-color: green;
+	grid-area: map;
+}
+
+#saved {
+	background-color: blue;
+	grid-area: saved;
+}
+
+#footer {
+	background-color: red;
+	grid-area: footer;
+}
+
+/* #board-wrapper {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+} */
 
 #button {
-    background-color: rgb(188, 210, 91);
+	background-color: rgb(188, 210, 91);
 }
-
 
 #signup-div {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.box {
-    width: 10px;
-    height: 10px;
-}
-
-#wall {
-    background-color: black;
-}
-
-#space {
-    background-color: whitesmoke;
-}
-
-.cavern {
-    width: 600px;
-    border: solid 1px black;
-    display: grid;
-    grid-template-columns: repeat(60, 1fr);
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
