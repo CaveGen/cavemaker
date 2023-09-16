@@ -4,7 +4,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
     mode: 'development',
-    entry: './client/main.jsx',
+    entry: './client/login.jsx',
     output: {
         path: path.join(__dirname, '/build'),
         filename: 'bundle.js',
@@ -43,55 +43,3 @@ module.exports = {
         }),
     ],
 }
-
-
-
-// const path = require('path');
-// const HtmlWebpackPlugin = require('html-webpack-plugin');
-
-// module.exports = {
-//     entry: './client/main.jsx',
-
-//     output: {
-//         path: path.join(__dirname, 'build'),
-//         filename: 'bundle.js'
-//     },
-
-//     module: {
-//         rules: [
-//             {
-//                 test: /\.(js|jsx)$/,
-//                 exclude: /node_modules/,
-//                 use: {
-//                     loader: 'babel-loader'
-//                 }
-//             },
-//             {
-//                 test: /\.css$/,
-//                 use: ['style-loader', 'css-loader']
-//             }
-//         ]
-//     },
-
-//     resolve: {
-//         extensions: ['.js', '.jsx']
-//     },
-
-//     plugins: [
-//         new HtmlWebpackPlugin({
-//             template: './index.html'
-//         })
-//     ],
-
-//     devServer: {
-//         compress: true,
-//         port: 8080,
-//         proxy: {
-//             '/api': 'http://localhost:3000'
-//         },
-//         static: {
-//             directory: path.join(__dirname, 'public'),
-//         },
-//         open: true
-//     }
-// };
