@@ -1,14 +1,24 @@
 import { createRoot } from 'react-dom/client';
 import React, { useState, useEffect } from 'react';
-import './style.css';
-import { set } from 'mongoose';
-import caveMaker from './caveMaker.js';
-import Cavern from './caveGenerator.jsx';
+import MainContainerMember from './containers/MainContainerMember.jsx';
 
-function CaveMaker() {
-    return (
-        <Cavern />
-    )
-}
+const CaveMaker = () => {
+	// if (!loggedIn) {
+	// 	return (
+	// 		// Render App with limited functionality
+	// 		<MainContainerGuest />
+	// 	)
+	// }
+	// else {
+	// return (
+	// 	// Render App with full functionality
+	// 	<MainContainerMember />;
+	// )
+	// }
+	return <MainContainerMember />;
+};
+
+const root = createRoot(document.getElementById('root'));
+root.render(<CaveMaker />);
 
 export default CaveMaker;
