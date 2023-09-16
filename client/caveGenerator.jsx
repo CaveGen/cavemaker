@@ -92,8 +92,4 @@ const Box = (props) => {
     }
 }
 
-
-// const root = createRoot(document.getElementById('content'));
-// root.render(<Cavern />)
-
 export default Cavern;

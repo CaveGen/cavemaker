@@ -2,12 +2,6 @@ body {
 	background-color: rgb(77, 70, 8);
 }
 
-/* h1 {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-} */
-
 .mainContainer {
 	height: 100vh;
 	display: grid;
@@ -51,11 +45,11 @@ body {
 	grid-area: footer;
 }
 
-/* #board-wrapper {
+#board-wrapper {
 	display: flex;
 	align-items: center;
 	justify-content: center;
-} */
+}
 
 #button {
 	background-color: rgb(188, 210, 91);
@@ -65,4 +59,60 @@ body {
 	display: flex;
 	align-items: center;
 	justify-content: center;
+}
+
+body {
+	background-color: rgb(8, 7, 4);
+}
+
+h1 {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	color: whitesmoke
+}
+
+label {
+	color: whitesmoke
+}
+
+.login-signup {
+	margin-top: 35vh;
+}
+
+#board-wrapper {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+#button {
+	background-color: rgb(188, 210, 91);
+}
+
+
+#signup-div {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.box {
+	width: 10px;
+	height: 10px;
+}
+
+#wall {
+	background-color: black;
+}
+
+#space {
+	background-color: whitesmoke;
+}
+
+.cavern {
+	width: 600px;
+	border: solid 1px black;
+	display: grid;
+	grid-template-columns: repeat(60, 1fr);
 }
