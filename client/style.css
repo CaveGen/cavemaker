@@ -1,11 +1,20 @@
 body {
-    background-color: rgb(77, 70, 8);
+    background-color: rgb(8, 7, 4);
 }
 
 h1 {
     display: flex;
     align-items: center;
     justify-content: center;
+    color: whitesmoke
+}
+
+label {
+    color: whitesmoke
+}
+
+.login-signup {
+    margin-top: 35vh;
 }
 
 #board-wrapper {
