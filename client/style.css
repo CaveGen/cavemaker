@@ -24,3 +24,23 @@ h1 {
     align-items: center;
     justify-content: center;
 }
+
+.box {
+    width: 10px;
+    height: 10px;
+}
+
+#wall {
+    background-color: black;
+}
+
+#space {
+    background-color: whitesmoke;
+}
+
+.cavern {
+    width: 600px;
+    border: solid 1px black;
+    display: grid;
+    grid-template-columns: repeat(60, 1fr);
+}

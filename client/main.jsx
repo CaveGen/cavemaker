@@ -2,82 +2,99 @@ import { createRoot } from 'react-dom/client';
 import React, { useState, useEffect } from 'react';
 import './style.css';
 import { set } from 'mongoose';
+import caveMaker from './caveMaker.js';
 
-function App() {
-    const [username, setUsername] = useState('');
-    const [password, setPassword] = useState('');
-    const [signupForm, showSignupForm] = useState(false);
+const topRank = new Set();
+const bottomRank = new Set();
+const leftFile = new Set();
+const rightFile = new Set();
 
+function Cavern() {
+    const [boxes, setBoxes] = useState([])
+    console.log('here is topRank', topRank);
+    console.log('here is bottomRank', bottomRank);
+    console.log('here is leftFile', leftFile);
+    console.log('here is rightFile', rightFile);
 
-    function handleInputChange(e) {
-        const { name, value } = e.target;
+    useEffect(() => {
+        const arr = generateCave(60, 40, 8);
+        setBoxes(arr);
+    }, []);
 
-        if (name === "username") {
-            console.log('the username changes!')
-            setUsername(value);
+    function generateCave(length, fill, smooth) {
+        for (let i = 0; i < length; i++) {
+            topRank.add(i);
+            bottomRank.add(((length * length) - length) + i);
         }
-        else if (name === "password") {
-            console.log('the password changes!')
-            setPassword(value)
+        for (let i = 0; i < length * length; i += length) {
+            leftFile.add(i);
+            rightFile.add(i + length - 1);
         }
-        else if (name === "signup-toggle") {
-            console.log('in the signup!');
-            showSignupForm(!signupForm);
+        let arr = [];
+        for (let i = 0; i < length * length; i++) {
+            if (topRank.has(i) || bottomRank.has(i) || leftFile.has(i) || rightFile.has(i)) {
+                arr.push(<Box key={i} color={'b'} />);
+            }
+            else {
+                const num = rollDice(fill)
+                num === 1 ? arr.push(<Box key={i} color={'b'} />) : arr.push(<Box key={i} color={'w'} />);
+            }
         }
-        else if (name === "signup") {
-            console.log('made username ')
+
+        for (let i = 0; i < smooth; i++) {
+            arr = smoothWalls(arr, length);
         }
+
+        return arr;
     }
 
-    function handleSubmit(e) {
-        e.preventDefault();
-        //Target property here looks pretty important.
-        console.log('the event: ', e);
-        if (!signupForm) {
-            //Login fetch here
-            console.log('you logged in!');
-        }
-        else {
-            //Signup fetch here
-            console.log('you signed up!');
-        }
+    function rollDice(number) {
+        return Math.random() * 100 > number ? 1 : 0
     }
 
-    if (!signupForm) {
+    function smoothWalls(array, length) {
+        let newArray = array.map(cell => ({ ...cell }));
+
+        for (let i = 0; i < array.length; i++) {
+            if (!topRank.has(i) && !bottomRank.has(i) && !leftFile.has(i) && !rightFile.has(i)) {
+                inspectNeighbors(array, i, length) > 4 ? newArray[i] = <Box key={i} color={'b'} /> : newArray[i] = <Box key={i} color={'w'} />;
+            }
+        }
+        return newArray;
+    }
+
+
+    function inspectNeighbors(array, index, length) {
+        let wallCount = 0;
+        array[index - 1].props.color === 'b' ? wallCount++ : wallCount;
+        array[index + 1].props.color === 'b' ? wallCount++ : wallCount;
+        array[index - length].props.color === 'b' ? wallCount++ : wallCount;
+        array[index - length - 1].props.color === 'b' ? wallCount++ : wallCount;
+        array[index - length + 1].props.color === 'b' ? wallCount++ : wallCount;
+        array[index + length].props.color === 'b' ? wallCount++ : wallCount;
+        array[index + length - 1].props.color === 'b' ? wallCount++ : wallCount;
+        array[index + length + 1].props.color === 'b' ? wallCount++ : wallCount;
+        return wallCount;
+    }
+
+    return (
+        <div className="cavern">{boxes}</div>
+    )
+}
+
+const Box = (props) => {
+    if (props.color === 'b') {
         return (
-            <div className="login-signup">
-                <form className="login-form" onSubmit={handleSubmit}>
-                    <label htmlFor="username">Username: </label>
-                    <input type="text" name="username" value={username} className="user-form" onChange={handleInputChange}></input>
-                    <label htmlFor="password">Password: </label>
-                    <input type="password" name="password" value={password} className="user-form" onChange={handleInputChange}></input>
-                    <button type="submit" id="button" className="user-form">Sign In</button>
-                </form>
-                <div id="signup-div">
-                    <button type="button" name="signup-toggle" id="button" className="user-form" onClick={handleInputChange}>Already Have An Account?</button>
-                </div>
-            </div>
+            <div className="box" id="wall"></div>
         )
-    } else {
+    }
+    else {
         return (
-            <div className="login-signup">
-                <form className="login-form" onSubmit={handleSubmit}>
-                    <label htmlFor="username">Username: </label>
-                    <input type="text" name="username" value={username} className="user-form" onChange={handleInputChange}></input>
-                    <label htmlFor="password">Password: </label>
-                    <input type="password" name="password" value={password} className="user-form" onChange={handleInputChange}></input>
-                    <button type="submit" id="button" className="user-form">Sign In</button>
-                </form>
-                <div id="signup-div">
-                    <button type="button" name="signup-toggle" id="button" className="user-form" onClick={handleInputChange}>Already Have An Account?</button>
-                </div>
-            </div>
+            <div className="box" id="space"></div>
         )
     }
 }
 
 
-
-
 const root = createRoot(document.getElementById('content'));
-root.render(<App />)
+root.render(<Cavern />)
