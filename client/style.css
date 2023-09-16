@@ -1,26 +1,68 @@
 body {
-    background-color: rgb(77, 70, 8);
+	background-color: rgb(77, 70, 8);
 }
 
-h1 {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+/* h1 {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+} */
+
+.mainContainer {
+	height: 100vh;
+	display: grid;
+	grid-template: auto / repeat(5, 1fr);
+	grid-template-areas:
+		'top top top top top'
+		'sliders nav nav nav saved'
+		'sliders map map map saved'
+		'sliders map map map saved'
+		'sliders map map map saved'
+		'footer footer footer footer footer';
 }
 
-#board-wrapper {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+#nav {
+	background-color: purple;
+	grid-area: nav;
 }
+
+#top {
+	background-color: red;
+	grid-area: top;
+}
+
+#sliders {
+	background-color: orange;
+	grid-area: sliders;
+}
+
+#map {
+	background-color: green;
+	grid-area: map;
+}
+
+#saved {
+	background-color: blue;
+	grid-area: saved;
+}
+
+#footer {
+	background-color: red;
+	grid-area: footer;
+}
+
+/* #board-wrapper {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+} */
 
 #button {
-    background-color: rgb(188, 210, 91);
+	background-color: rgb(188, 210, 91);
 }
 
-
 #signup-div {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
