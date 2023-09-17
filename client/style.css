@@ -1,5 +1,5 @@
 body {
-	background-color: rgb(77, 70, 8);
+  background-color: rgb(77, 70, 8);
 }
 
 /* h1 {
@@ -9,46 +9,48 @@ body {
 } */
 
 .mainContainer {
-	height: 100vh;
-	display: grid;
-	grid-template: auto / repeat(5, 1fr);
-	grid-template-areas:
-		'banner banner banner banner banner'
-		'sliders nav nav nav saved'
-		'sliders map map map saved'
-		'sliders map map map saved'
-		'sliders map map map saved'
-		'footer footer footer footer footer';
+  height: 100vh;
+  display: grid;
+  grid-template: auto / repeat(5, 1fr);
+  grid-template-areas:
+    'banner banner banner banner banner'
+    'sliders nav nav nav saved'
+    'sliders map map map saved'
+    'sliders map map map saved'
+    'sliders map map map saved'
+    'footer footer footer footer footer';
 }
 
 #nav {
-	background-color: purple;
-	grid-area: nav;
+  background-color: purple;
+  grid-area: nav;
 }
 
 #banner {
-	background-color: red;
-	grid-area: banner;
+  background-color: red;
+  grid-area: banner;
 }
 
 #sliders {
-	background-color: orange;
-	grid-area: sliders;
+  background-color: orange;
+  grid-area: sliders;
 }
 
 #map {
-	background-color: green;
-	grid-area: map;
+  background-color: white;
+  grid-area: map;
+  display: flex;
+  justify-content: center;
 }
 
 #saved {
-	background-color: blue;
-	grid-area: saved;
+  background-color: blue;
+  grid-area: saved;
 }
 
 #footer {
-	background-color: red;
-	grid-area: footer;
+  background-color: red;
+  grid-area: footer;
 }
 
 /* #board-wrapper {
@@ -58,11 +60,30 @@ body {
 } */
 
 #button {
-	background-color: rgb(188, 210, 91);
+  background-color: rgb(188, 210, 91);
 }
 
 #signup-div {
-	display: flex;
-	align-items: center;
-	justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cavern {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 20px;
+  width: 600px;
+  height: 600px;
+}
+.box#wall {
+  width: 10px;
+  height: 10px;
+  background-color: purple;
+}
+
+.box#space {
+  width: 10px;
+  height: 10px;
+  background-color: orange;
 }
