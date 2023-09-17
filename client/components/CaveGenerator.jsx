@@ -31,12 +31,12 @@ function Cavern({
 
   function generateCave(length, fill, smooth) {
     let arr = [];
-    for (let i = 0; i < length; i++) {
-      for (let j = 0; j < length; j++) {
-        const index = i * length + j;
+    for (let i = 0; i < length * 2; i++) {
+      for (let j = 0; j < length * 2; j++) {
+        const index = i * (length * 2) + j;
 
-        const x = j * 10;
-        const y = i * 10;
+        const x = j * 5;
+        const y = i * 5;
 
         if (
           topRank.has(index) ||
@@ -80,8 +80,8 @@ function Cavern({
 
   function smoothWalls(array, length) {
     let newArray = array.map((cell, i) => {
-      const x = (i % length) * 10;
-      const y = Math.floor(i / length) * 10;
+      const x = (i % (length * 2)) * 5;
+      const y = Math.floor(i / (length * 2)) * 5;
 
       if (
         !topRank.has(i) &&
@@ -108,8 +108,8 @@ function Cavern({
     let wallCount = 0;
 
     // Calculate row and column for clarity
-    const row = Math.floor(index / length);
-    const col = index % length;
+    const row = Math.floor(index / (length * 2));
+    const col = index % (length * 2);
 
     // Relative indices of neighbors
     const neighbors = [
@@ -128,8 +128,13 @@ function Cavern({
       const newCol = col + dy;
 
       // Check boundary conditions
-      if (newRow >= 0 && newRow < length && newCol >= 0 && newCol < length) {
-        const newIndex = newRow * length + newCol;
+      if (
+        newRow >= 0 &&
+        newRow < length * 2 &&
+        newCol >= 0 &&
+        newCol < length * 2
+      ) {
+        const newIndex = newRow * (length * 2) + newCol;
         if (array[newIndex] && array[newIndex].props.color === 'b') {
           wallCount++;
         }
@@ -150,8 +155,8 @@ function Cavern({
   // return <div className="cavern">{boxes}</div>;
   return (
     <svg
-      width={length * 10}
-      height={length * 10}
+      width={length * 2 * 5}
+      height={length * 2 * 5}
     >
       {boxes}
     </svg>
@@ -163,8 +168,8 @@ const Box = (props) => {
     <rect
       x={props.x}
       y={props.y}
-      width={10}
-      height={10}
+      width={5}
+      height={5}
       fill={color}
     />
   );
