@@ -87,3 +87,8 @@ body {
   height: 10px;
   background-color: rgb(155, 155, 155);
 }
+
+.mapDisplayModule svg {
+  display: flex;
+  flex-wrap: wrap;
+}
