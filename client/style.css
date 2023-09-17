@@ -79,11 +79,11 @@ body {
 .box#wall {
   width: 10px;
   height: 10px;
-  background-color: purple;
+  background-color: rgb(60, 60, 60);
 }
 
 .box#space {
   width: 10px;
   height: 10px;
-  background-color: orange;
+  background-color: rgb(155, 155, 155);
 }

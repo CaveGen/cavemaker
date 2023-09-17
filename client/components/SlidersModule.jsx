@@ -1,7 +1,15 @@
 import e from 'cors';
 import React, { useState } from 'react';
 
-const SlidersModule = () => {
+const SlidersModule = ({
+  length,
+  setLength,
+  fill,
+  setFill,
+  smooth,
+  setSmooth,
+  setShouldRegenerate,
+}) => {
   const [sliderValues, setSliderValues] = useState([0, 0, 0, 0]);
 
   const handleSliderChange = (event, index) => {
@@ -13,53 +21,42 @@ const SlidersModule = () => {
   return (
     <div className="slidersModule">
       <div className="slider-container">
-        <h2>This is the Sliders Module</h2>
-        {sliderValues.map((value, index) => (
-          <div
-            key={index}
-            className="sliders"
-          >
-            <input
-              type="range"
-              min="0"
-              max="100"
-              value={value}
-              onChange={(e) => handleSliderChange(e, index)}
-              className="slider"
-            />{' '}
-            <p>
-              Slider {index + 1} value: {value}
-            </p>
-          </div>
-        ))}
+        <div id="gridSlider">
+          <label>Grid Size:</label>
+          <input
+            type="range"
+            min="10"
+            max="100"
+            value={length}
+            onChange={(e) => setLength(e.target.value)}
+          />
+        </div>
+        <div id="fillSlider">
+          <label> Fill Percentage: </label>
+          <input
+            type="range"
+            min="10"
+            max="100"
+            value={fill}
+            onChange={(e) => setFill(e.target.value)}
+          />
+        </div>
+        <div id="smoothingSlider">
+          <label>Smoothing Iterations:</label>
+          <input
+            type="range"
+            min="10"
+            max="100"
+            value={smooth}
+            onChange={(e) => setSmooth(e.target.value)}
+          />
+        </div>
+        <div id="generateCavern">
+          <button onClick={() => setShouldRegenerate(true)}>
+            Generate Map
+          </button>
+        </div>
       </div>
-      {/* <input
-        type="range"
-        min="0"
-        max="100"
-        value={sliderValue}
-        onChange={handleSliderChange}
-        className="sliderBeta"
-      />{' '}
-      <p>Slider value: {sliderValue}</p>
-      <input
-        type="range"
-        min="0"
-        max="100"
-        value={sliderValue}
-        onChange={handleSliderChange}
-        className="sliderGamma"
-      />{' '}
-      <p>Slider value: {sliderValue}</p>
-      <input
-        type="range"
-        min="0"
-        max="100"
-        value={sliderValue}
-        onChange={handleSliderChange}
-        className="sliderDelta"
-      />{' '}
-      <p>Slider value: {sliderValue}</p> */}
     </div>
   );
 };
