@@ -24,7 +24,7 @@ const MainContainerMember = () => {
           setShouldRegenerate={setShouldRegenerate}
         />
       </div>
-      <div id="nav"></div>
+      {/* <div id="nav"></div> */}
       <div id="map">
         <MapDisplayModule
           length={length}
