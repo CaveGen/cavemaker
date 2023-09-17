@@ -23,11 +23,73 @@ function Cavern({
 
   useEffect(() => {
     if (shouldRegenerate) {
-      const arr = generateCave(length, fill, smooth);
-      setBoxes(arr);
+      const initArr = generateInitialCave(length, fill);
+      setBoxes(initArr);
+      setTimeout(() => {
+        applySmoothing(initArr, smooth, length);
+      }, 300);
+      // const arr = generateCave(length, fill, smooth);
+      // setBoxes(arr);
       setShouldRegenerate(false);
     }
   }, [length, fill, smooth, shouldRegenerate]);
+
+  function generateInitialCave(length, fill) {
+    let arr = [];
+    for (let i = 0; i < length * 2; i++) {
+      for (let j = 0; j < length * 2; j++) {
+        const index = i * (length * 2) + j;
+
+        const x = j * 5;
+        const y = i * 5;
+
+        if (
+          topRank.has(index) ||
+          bottomRank.has(index) ||
+          leftFile.has(index) ||
+          rightFile.has(index)
+        ) {
+          arr.push(
+            <Box
+              key={index}
+              x={x}
+              y={y}
+              color={'b'}
+            />
+          );
+          // setTimeout(() => setBoxes([...arr]), 100);
+        } else {
+          const num = rollDice(fill);
+          const color = num === 1 ? 'b' : 'w';
+          arr.push(
+            <Box
+              key={index}
+              x={x}
+              y={y}
+              color={color}
+            />
+          );
+          // setTimeout(() => setBoxes([...arr]), 100);
+        }
+      }
+    }
+    return arr;
+  }
+
+  async function applySmoothing(initArr, smooth, length) {
+    let interval = 3;
+    if (length < 60) {
+      interval = length * 15;
+    } else if (length > 100) {
+      interval = 1;
+    }
+    let arr = [...initArr];
+    for (let i = 0; i < smooth; i++) {
+      arr = smoothWalls(arr, length);
+      setBoxes([...arr]);
+      await new Promise((r) => setTimeout(r, interval));
+    }
+  }
 
   function generateCave(length, fill, smooth) {
     let arr = [];
@@ -52,6 +114,7 @@ function Cavern({
               color={'b'}
             />
           );
+          // setTimeout(() => setBoxes([...arr]), 100);
         } else {
           const num = rollDice(fill);
           const color = num === 1 ? 'b' : 'w';
@@ -63,6 +126,7 @@ function Cavern({
               color={color}
             />
           );
+          // setTimeout(() => setBoxes([...arr]), 100);
         }
       }
     }
@@ -118,7 +182,7 @@ function Cavern({
       [0, -1], // Above
       [0, 1], // below
       [-1, -1], // Diagonal Left Top
-      [-1, -1], // Diagonal Left Bottom
+      [-1, 1], // Diagonal Left Bottom
       [1, -1], // Diagonal Right Top
       [1, 1], // Diagonal Right Bottom
     ];
@@ -162,9 +226,13 @@ function Cavern({
     </svg>
   );
 }
-const Box = (props) => {
+const Box = (props, stateArr) => {
+  // function renderState(stateArr) {
+
+  // }
   const color = props.color === 'b' ? '#a1a1a1' : '#2e3033';
   return (
+    // renderState(stateArr);
     <rect
       x={props.x}
       y={props.y}
