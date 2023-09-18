@@ -16,6 +16,7 @@ const downloadMapImage = ({ svgRef }) => {
   // Convert Blob to a data URL
   const url = URL.createObjectURL(blob);
 
+  console.log(blob);
   // Create an `<a>` element and trigger the download
   const a = document.createElement('a');
   a.href = url;
@@ -23,13 +24,14 @@ const downloadMapImage = ({ svgRef }) => {
   a.click();
 };
 
-const saveMapToCollection = () => {
+const saveMapToCollection = ({ svgRef, username }) => {
   console.log('Save Map to Collection!');
+  console.log('here is the username in the savemapcollection : ', username);
   // Grab the map and assign it to variable
   const svgElement = svgRef.current;
 
   // Serialize the map SVG to a string
-  const seializer = new XMLSerializer();
+  const serializer = new XMLSerializer();
   const svgString = serializer.serializeToString(svgElement);
 
   // Create Blob object from SVG String
@@ -37,13 +39,22 @@ const saveMapToCollection = () => {
     type: 'image/svg+xml;charset=utf-8',
   });
 
-  fetch('api/saveMap', {
+  fetch('http://localhost:3000/map/create', {
     //What should this URI be?
     method: 'POST',
-    body: blob,
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      "username": username,
+      "newMap": {
+        "mapName": 'MAP NAME STATE HERE',
+        "mapData": svgString
+      }
+    })
   })
     .then((res) => res.json())
-    .then((data) => console.log(data))
+    .then((data) => alert('Your map has been saved!'))
     .catch((error) => console.error('Error:', error));
 };
 
@@ -51,13 +62,23 @@ const searchDbForUser = () => {
   console.log('Search the database for a user!');
 };
 
-const retrieveMapsFromShared = () => {};
+export const retrieveMapsFromShared = ({ username }) => {
+  return fetch(`http://localhost:3000/friendmaps/${username}`)
+    .then(res => res.json())
+    .then(data => {
+      return data.maps;
+    })
+    .catch(err => {
+      console.error('Error fetching friend maps: ', err);
+      return [];
+    })
+};
 
 const shareMapWithUser = () => {
   console.log('Map Shared with user!');
 };
 
-const MapFunctionsModule = ({ svgRef }) => {
+const MapFunctionsModule = ({ svgRef, username }) => {
   return (
     <div className="mapFunctionsModule">
       <div className="mapFunctionsContainer">
@@ -71,7 +92,7 @@ const MapFunctionsModule = ({ svgRef }) => {
         <button
           className="mapFunctionsButtons"
           id="saveMapToCollectionButton"
-          onClick={saveMapToCollection}
+          onClick={() => saveMapToCollection({ svgRef, username })}
         >
           Save Map to Collection
         </button>
