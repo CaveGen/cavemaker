@@ -1,7 +1,7 @@
 import React from 'react';
 
 const downloadMapImage = ({ svgRef }) => {
-  // Grab the svg element
+  // Grab the map and assign it to variable
   const svgElement = svgRef.current;
 
   // Serialize SVG to string
@@ -25,6 +25,26 @@ const downloadMapImage = ({ svgRef }) => {
 
 const saveMapToCollection = () => {
   console.log('Save Map to Collection!');
+  // Grab the map and assign it to variable
+  const svgElement = svgRef.current;
+
+  // Serialize the map SVG to a string
+  const seializer = new XMLSerializer();
+  const svgString = serializer.serializeToString(svgElement);
+
+  // Create Blob object from SVG String
+  const blob = new Blob([svgString], {
+    type: 'image/svg+xml;charset=utf-8',
+  });
+
+  fetch('api/saveMap', {
+    //What should this URI be?
+    method: 'POST',
+    body: blob,
+  })
+    .then((res) => res.json())
+    .then((data) => console.log(data))
+    .catch((error) => console.error('Error:', error));
 };
 
 const searchDbForUser = () => {
