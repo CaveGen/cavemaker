@@ -67,7 +67,9 @@ const SlidersModule = ({
           <input
             type="range"
             min="0"
-            max="15"
+
+            max="20"
+
             value={smooth}
             onChange={(e) => setSmooth(e.target.value)}
           />
