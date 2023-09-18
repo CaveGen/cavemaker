@@ -22,10 +22,13 @@ const MainContainerMember = (props) => {
     retrieveMapsFromShared(props).then((maps) => {
       const friendlyMaps = {};
       for (let friend in maps) {
+        console.log('Friend in Maps: ', friend);
         for (let map in maps[friend]) {
+          console.log('Map in maps of friend', map);
           friendlyMaps[map] = maps[friend][map];
         }
       }
+      console.log('friendlyMaps before state change ', friendlyMaps);
       setFriendMaps(friendlyMaps);
       retrieveMapsFromCollection(props).then((maps) => {
         const retrievedPrivateMaps = {};

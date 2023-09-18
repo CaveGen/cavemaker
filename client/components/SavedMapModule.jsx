@@ -3,6 +3,7 @@ import SavedMaps from './SavedMaps.jsx';
 
 const SavedMapModule = ({ friendmaps, privateMaps }) => {
   console.log('privateMaps in SavedMapModule', privateMaps);
+  console.log('publicMaps in SavedMapModule', friendmaps);
   return (
     <div className="savedMapModule">
       <h2>Saved Maps</h2>

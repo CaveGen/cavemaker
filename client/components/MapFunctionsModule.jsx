@@ -23,7 +23,7 @@ const downloadMapImage = ({ svgRef }) => {
   a.click();
 };
 
-const saveMapToPrivateCollection = ({ svgRef, username }) => {
+const saveMapToPrivateCollection = ({ svgRef, mapNameState, username }) => {
   console.log('svgRef in saveMapToPrivateCollection', svgRef);
   console.log(svgRef.current);
   console.log('Saved Map to Collection!');
@@ -47,7 +47,7 @@ const saveMapToPrivateCollection = ({ svgRef, username }) => {
     body: JSON.stringify({
       username: username,
       newMap: {
-        mapName: 'MAP NAME STATE HERE',
+        mapName: mapNameState,
         mapData: svgString,
       },
     }),
@@ -57,7 +57,7 @@ const saveMapToPrivateCollection = ({ svgRef, username }) => {
     .catch((error) => console.error('Error:', error));
 };
 
-const deleteMapFromCollection = ({ username }) => {
+const deleteMapFromCollection = ({ username, mapNameState }) => {
   fetch('http://localhost:3000/map/delete', {
     method: 'DELETE',
     headers: {
@@ -65,7 +65,7 @@ const deleteMapFromCollection = ({ username }) => {
     },
     body: JSON.stringify({
       username: username,
-      mapName: 'MAP NAME STATE HERE',
+      mapName: mapNameState,
     }),
   })
     .then((res) => res.json())
@@ -81,7 +81,8 @@ export const retrieveMapsFromShared = ({ username }) => {
   return fetch(`http://localhost:3000/friendmaps/${username}`)
     .then((res) => res.json())
     .then((data) => {
-      return data.maps;
+      console.log('retrieve maps from shared: ', data);
+      return data;
     })
     .catch((err) => {
       console.error('Error fetching friend maps: ', err);
@@ -122,7 +123,7 @@ const addMapToPublicCollection = ({ svgRef, mapNameState, username }) => {
     },
     body: JSON.stringify({
       username: username,
-      mapName: { mapNameState },
+      mapName: mapNameState,
       mapData: svgString,
     }),
   })
@@ -131,7 +132,7 @@ const addMapToPublicCollection = ({ svgRef, mapNameState, username }) => {
     .catch((error) => console.error('Error:', error));
 };
 
-const unshareMapWithUser = ({ username }) => {
+const unshareMapWithUser = ({ username, mapNameState }) => {
   fetch('http://localhost:3000/map/unshare', {
     method: 'DELETE',
     headers: {
@@ -139,7 +140,7 @@ const unshareMapWithUser = ({ username }) => {
     },
     body: JSON.stringify({
       username: username,
-      mapName: 'MAP NAME STATE HERE',
+      mapName: mapNameState,
     }),
   })
     .then((res) => res.json())
@@ -147,7 +148,7 @@ const unshareMapWithUser = ({ username }) => {
     .catch((error) => console.error('Error:', error));
 };
 
-const addFriend = ({ username }) => {
+const addFriend = ({ username, friendNameState }) => {
   fetch('http://localhost:3000/friend/add', {
     method: 'POST',
     headers: {
@@ -155,7 +156,7 @@ const addFriend = ({ username }) => {
     },
     body: JSON.stringify({
       username: username,
-      friend: 'FRIEND NAME STATE HERE',
+      friend: friendNameState,
     }),
   })
     .then((res) => res.json())
@@ -167,7 +168,7 @@ const addFriend = ({ username }) => {
     .catch((error) => console.error('Error:', error));
 };
 
-const removeFriend = ({ username }) => {
+const removeFriend = ({ username, friendNameState }) => {
   fetch('http://localhost:3000/friend/delete', {
     method: 'DELETE',
     headers: {
@@ -175,7 +176,7 @@ const removeFriend = ({ username }) => {
     },
     body: JSON.stringify({
       username: username,
-      friend: 'FRIEND NAME STATE HERE',
+      friend: friendNameState,
     }),
   })
     .then((res) => res.json())
@@ -187,6 +188,15 @@ const removeFriend = ({ username }) => {
 
 const MapFunctionsModule = ({ svgRef, username }) => {
   const [mapNameState, setMapNameState] = useState('');
+  const [friendNameState, setFriendNameState] = useState('');
+
+  function handleFriendInputChange(e) {
+    const { name, value } = e.target;
+    if (name === 'friendName') {
+      setFriendNameState(value);
+    }
+    console.log('the map name has been set to: ', value);
+  }
 
   function handleInputChange(e) {
     const { name, value } = e.target;
@@ -198,43 +208,91 @@ const MapFunctionsModule = ({ svgRef, username }) => {
   return (
     <div className="mapFunctionsModule">
       <div className="mapFunctionsContainer">
-        <button
-          className="mapFunctionsButtons"
-          id="saveMapImageButton"
-          onClick={() => downloadMapImage({ svgRef })}
-        >
-          Download Map
-        </button>
-
-        <label htmlFor="shareAndNameMap">
-          Name Map:
-          <input
-            type="text"
-            name="mapName"
-            placeholder="Map Name"
-            value={mapNameState}
-            id="sharedMapName"
-            onChange={handleInputChange}
-          />
-          <button
-            className="mapFunctionsButtons"
-            id="addMapToPublic"
-            onClick={() =>
-              addMapToPublicCollection({ svgRef, mapNameState, username })
-            }
-          >
-            Add to Public Collection
-          </button>
-          <button
-            className="mapFunctionsButtons"
-            id="addMapToPrivate"
-            onClick={() =>
-              saveMapToPrivateCollection({ svgRef, mapNameState, username })
-            }
-          >
-            Add to Private Collection
-          </button>
-        </label>
+        <div className="shareAndNameMap">
+          <label htmlFor="shareAndNameMap">
+            Name Map:
+            <input
+              type="text"
+              name="mapName"
+              placeholder="Map Name"
+              value={mapNameState}
+              id="sharedMapName"
+              onChange={handleInputChange}
+            />
+            <button
+              className="mapFunctionsButtons"
+              id="addMapToPublic"
+              onClick={() =>
+                addMapToPublicCollection({ svgRef, mapNameState, username })
+              }
+            >
+              Add to Public Collection
+            </button>
+            <button
+              className="mapFunctionsButtons"
+              id="addMapToPrivate"
+              onClick={() =>
+                saveMapToPrivateCollection({ svgRef, mapNameState, username })
+              }
+            >
+              Add to Private Collection
+            </button>
+            <button
+              className="mapFunctionsButtons"
+              id="saveMapImageButton"
+              onClick={() => downloadMapImage({ svgRef })}
+            >
+              Download Map
+            </button>
+            <button
+              className="mapFunctionButtons"
+              id="deleteMapButton"
+              onClick={() =>
+                deleteMapFromCollection({ username, mapNameState })
+              }
+            >
+              Delete Map
+            </button>
+            <button
+              className="mapFunctionButtons"
+              id="unshareMapButton"
+              onClick={() => unshareMapWithUser({ username, mapNameState })}
+            >
+              Un-Share Map
+            </button>
+          </label>
+        </div>
+        <div className="addOrRemoveFriends">
+          <label htmlFor="addOrRemoveFriends">
+            Friend Name:
+            <input
+              type="text"
+              name="friendName"
+              placeholder="Friend Name"
+              value={friendNameState}
+              id="friendName"
+              onChange={handleFriendInputChange}
+            />
+            <button
+              className="friendFunctionButton"
+              id="addFriendButton"
+              onClick={() => {
+                addFriend({ username, friendNameState });
+              }}
+            >
+              Add Friend
+            </button>
+            <button
+              className="friendFunctionButton"
+              id="removeFriendButton"
+              onClick={() => {
+                removeFriend({ username, friendNameState });
+              }}
+            >
+              Remove Friend
+            </button>
+          </label>
+        </div>
       </div>
     </div>
   );
