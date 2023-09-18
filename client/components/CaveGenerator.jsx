@@ -1,6 +1,4 @@
-import React, { useState, useEffect } from 'react';
-
-// Consider having neighborCheck
+import React, { useState, useEffect, useRef } from 'react';
 
 const topRank = new Set();
 const bottomRank = new Set();
@@ -13,13 +11,9 @@ function Cavern({
   smooth,
   shouldRegenerate,
   setShouldRegenerate,
+  svgRef,
 }) {
   const [boxes, setBoxes] = useState([]);
-
-  // console.log('here is topRank', topRank);
-  // console.log('here is bottomRank', bottomRank);
-  // console.log('here is leftFile', leftFile);
-  // console.log('here is rightFile', rightFile);
 
   useEffect(() => {
     if (shouldRegenerate) {
@@ -89,8 +83,6 @@ function Cavern({
       setBoxes([...arr]);
       await new Promise((r) => setTimeout(r, interval));
     }
-
-
   }
 
   function generateCave(length, fill, smooth) {
@@ -206,21 +198,12 @@ function Cavern({
         }
       }
     }
-
-    // array[index - 1].props.color === 'b' ? wallCount++ : wallCount;
-    // array[index + 1].props.color === 'b' ? wallCount++ : wallCount;
-    // array[index - length].props.color === 'b' ? wallCount++ : wallCount;
-    // array[index - length - 1].props.color === 'b' ? wallCount++ : wallCount;
-    // array[index - length + 1].props.color === 'b' ? wallCount++ : wallCount;
-    // array[index + length].props.color === 'b' ? wallCount++ : wallCount;
-    // array[index + length - 1].props.color === 'b' ? wallCount++ : wallCount;
-    // array[index + length + 1].props.color === 'b' ? wallCount++ : wallCount;
     return wallCount;
   }
 
-  // return <div className="cavern">{boxes}</div>;
   return (
     <svg
+      ref={svgRef}
       width={length * 2 * 5}
       height={length * 2 * 5}
     >
@@ -229,12 +212,8 @@ function Cavern({
   );
 }
 const Box = (props, stateArr) => {
-  // function renderState(stateArr) {
-
-  // }
   const color = props.color === 'b' ? '#a1a1a1' : '#2e3033';
   return (
-    // renderState(stateArr);
     <rect
       x={props.x}
       y={props.y}
@@ -244,26 +223,5 @@ const Box = (props, stateArr) => {
     />
   );
 };
-
-// const Box = (props) => {
-//   if (props.color === 'b') {
-//     return (
-//       <div
-//         className="box"
-//         id="wall"
-//       ></div>
-//     );
-//   } else {
-//     return (
-//       <div
-//         className="box"
-//         id="space"
-//       ></div>
-//     );
-//   }
-// };
-
-// const root = createRoot(document.getElementById('content'));
-// root.render(<Cavern />)
 
 export default Cavern;
