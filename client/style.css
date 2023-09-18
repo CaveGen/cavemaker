@@ -3,10 +3,10 @@ nopmbody {
 }
 
 /* h1 {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-} */
+	  display: flex;
+	  align-items: center;
+	  justify-content: center;
+  } */
 
 /* .mainContainer {
   height: 100vh;
@@ -34,6 +34,32 @@ nopmbody {
     'footer footer footer footer footer';
 }
 
+/* .mainContainer {
+	height: 100vh;
+	display: grid;
+	grid-template: auto / repeat(5, 1fr);
+	grid-template-areas:
+	  'banner banner banner banner banner'
+	  'sliders nav nav nav saved'
+	  'sliders map map map saved'
+	  'sliders map map map saved'
+	  'sliders map map map saved'
+	  'footer footer footer footer footer';
+  } */
+
+.mainContainer {
+  height: 100vh;
+  display: grid;
+  grid-template: auto / repeat(5, 1fr);
+  grid-template-areas:
+    'banner banner banner banner banner'
+    'sliders mapfunc mapfunc mapfunc saved'
+    'sliders map map map saved'
+    'sliders map map map saved'
+    'sliders map map map saved'
+    'footer footer footer footer footer';
+}
+
 #mapfunc {
   /* set viewheight */
   background-color: purple;
@@ -42,7 +68,12 @@ nopmbody {
   height: 5vh;
 }
 
+
 #banner {
+  background-color: red;
+  grid-area: banner;
+  width: 100vw;
+  height: 15vh;
   background-color: red;
   grid-area: banner;
   width: 100vw;
@@ -50,6 +81,10 @@ nopmbody {
 }
 
 #sliders {
+  background-color: orange;
+  grid-area: sliders;
+  width: 20vw;
+  height: 75vh;
   background-color: orange;
   grid-area: sliders;
   width: 20vw;
@@ -67,9 +102,23 @@ nopmbody {
   max-width: 60vw;
   max-height: 75vh;
   overflow: auto;
+  background-color: white;
+  grid-area: map;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: auto;
+  max-width: 60vw;
+  max-height: 75vh;
+  overflow: auto;
 }
 
 #saved {
+  background-color: blue;
+  grid-area: saved;
+  width: 20vw;
+  height: 75vh;
   background-color: blue;
   grid-area: saved;
   width: 20vw;
@@ -81,13 +130,17 @@ nopmbody {
   grid-area: footer;
   width: 100vw;
   height: 10vh;
+  background-color: red;
+  grid-area: footer;
+  width: 100vw;
+  height: 10vh;
 }
 
 /* #board-wrapper {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-} */
+	  display: flex;
+	  align-items: center;
+	  justify-content: center;
+  } */
 
 #button {
   background-color: rgb(188, 210, 91);
@@ -106,6 +159,7 @@ nopmbody {
   width: 600px;
   height: 600px;
 }
+
 .box#wall {
   width: 10px;
   height: 10px;
