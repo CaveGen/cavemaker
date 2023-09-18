@@ -16,10 +16,10 @@ function Cavern({
 }) {
   const [boxes, setBoxes] = useState([]);
 
-  console.log('here is topRank', topRank);
-  console.log('here is bottomRank', bottomRank);
-  console.log('here is leftFile', leftFile);
-  console.log('here is rightFile', rightFile);
+  // console.log('here is topRank', topRank);
+  // console.log('here is bottomRank', bottomRank);
+  // console.log('here is leftFile', leftFile);
+  // console.log('here is rightFile', rightFile);
 
   useEffect(() => {
     if (shouldRegenerate) {

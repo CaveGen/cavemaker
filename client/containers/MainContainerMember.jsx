@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import SlidersModule from '../components/SlidersModule.jsx';
 import MapDisplayModule from '../components/MapDisplayModule.jsx';
 import SavedMapModule from '../components/SavedMapModule.jsx';
@@ -7,17 +7,17 @@ import { retrieveMapsFromShared } from '../components/MapFunctionsModule.jsx';
 import { retrieveMapsFromCollection } from '../components/MapFunctionsModule.jsx';
 
 
-const MainContainerMember = () => {
+const MainContainerMember = (props) => {
   // State management for sliders
   const [length, setLength] = useState(60);
   const [fill, setFill] = useState(40);
   const [smooth, setSmooth] = useState(8);
   const [shouldRegenerate, setShouldRegenerate] = useState(false);
-
   const [friendmaps, setFriendMaps] = useState({});
   const [privateMaps, setPrivateMaps] = useState({});
+  // console.log('here is the user: ', props.username);
   console.log('friendmaps: ', friendmaps);
-
+  console.log('here are the privateMaps', privateMaps);
   //This populates the friendmaps state with shared maps from friends.
   useEffect(() => {
     retrieveMapsFromShared(props)
@@ -67,6 +67,7 @@ const MainContainerMember = () => {
           smooth={smooth}
           shouldRegenerate={shouldRegenerate}
           setShouldRegenerate={setShouldRegenerate}
+          username={props.username}
         />
       </div>
       <div id="saved">
