@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import MainContainerMember from './containers/MainContainerMember.jsx';
 import Cavern from './caveGenerator.jsx'
 
-const CaveMaker = (props) => {
+const CaveMaker = () => {
     // if (!loggedIn) {
     // 	return (
     // 		// Render App with limited functionality
@@ -15,7 +15,7 @@ const CaveMaker = (props) => {
     // 	<MainContainerMember />;
     // )
     // }
-    return <MainContainerMember username={props.username} />;
+    return <MainContainerMember />;
 };
 
 export default CaveMaker;
