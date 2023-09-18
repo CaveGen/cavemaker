@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState } from 'react';
 import SlidersModule from '../components/SlidersModule.jsx';
 import MapDisplayModule from '../components/MapDisplayModule.jsx';
 import SavedMapModule from '../components/SavedMapModule.jsx';
@@ -6,14 +6,14 @@ import MapFunctionsModule from '../components/MapFunctionsModule.jsx';
 import { retrieveMapsFromShared } from '../components/MapFunctionsModule.jsx';
 import { retrieveMapsFromCollection } from '../components/MapFunctionsModule.jsx';
 
-const MainContainerMember = (props) => {
-  console.log('here is the username: ', props.username);
+
+const MainContainerMember = () => {
   // State management for sliders
   const [length, setLength] = useState(60);
   const [fill, setFill] = useState(40);
   const [smooth, setSmooth] = useState(8);
-  // State management to prevent map from re-gen until after button is clicked
   const [shouldRegenerate, setShouldRegenerate] = useState(false);
+
   const [friendmaps, setFriendMaps] = useState({});
   const [privateMaps, setPrivateMaps] = useState({});
   console.log('friendmaps: ', friendmaps);
@@ -42,14 +42,10 @@ const MainContainerMember = (props) => {
 
   // Hook for SVG download
   const svgRef = useRef(null);
+
   return (
     <div className="mainContainer">
-      <div id="banner">
-        <img
-          id="banner-logo"
-          src="../assets/CaveGen.png"
-        />
-      </div>
+      <div id="banner"></div>
       <div id="sliders">
         <SlidersModule
           length={length}
@@ -59,11 +55,10 @@ const MainContainerMember = (props) => {
           smooth={smooth}
           setSmooth={setSmooth}
           setShouldRegenerate={setShouldRegenerate}
-          username={props.username}
         />
       </div>
       <div id="mapfunc">
-        <MapFunctionsModule svgRef={svgRef} username={props.username} />
+        <MapFunctionsModule />
       </div>
       <div id="map">
         <MapDisplayModule
@@ -72,8 +67,6 @@ const MainContainerMember = (props) => {
           smooth={smooth}
           shouldRegenerate={shouldRegenerate}
           setShouldRegenerate={setShouldRegenerate}
-          svgRef={svgRef}
-          username={props.username}
         />
       </div>
       <div id="saved">
