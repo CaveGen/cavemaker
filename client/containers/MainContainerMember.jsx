@@ -40,24 +40,39 @@ const MainContainerMember = (props) => {
 	// Hook for SVG download
 	const svgRef = useRef(null);
 
-	return (
-		<div className='mainContainer'>
-			<div id='banner'></div>
-			<div id='sliders'>
-				<SlidersModule length={length} setLength={setLength} fill={fill} setFill={setFill} smooth={smooth} setSmooth={setSmooth} setShouldRegenerate={setShouldRegenerate} />
-			</div>
-			<div id='mapfunc'>
-				<MapFunctionsModule />
-			</div>
-			<div id='map'>
-				<MapDisplayModule length={length} fill={fill} smooth={smooth} shouldRegenerate={shouldRegenerate} setShouldRegenerate={setShouldRegenerate} />
-			</div>
-			<div id='saved'>
-				<SavedMapModule friendMaps={friendmaps} privateMaps={privateMaps} />
-			</div>
-			<div id='footer'></div>
-		</div>
-	);
+  return (
+    <div className="mainContainer">
+      <div id="banner"></div>
+      <div id="sliders">
+        <SlidersModule
+          length={length}
+          setLength={setLength}
+          fill={fill}
+          setFill={setFill}
+          smooth={smooth}
+          setSmooth={setSmooth}
+          setShouldRegenerate={setShouldRegenerate}
+        />
+      </div>
+      <div id="mapfunc">
+        <MapFunctionsModule />
+      </div>
+      <div id="map">
+        <MapDisplayModule
+          length={length}
+          fill={fill}
+          smooth={smooth}
+          shouldRegenerate={shouldRegenerate}
+          setShouldRegenerate={setShouldRegenerate}
+          username={props.username}
+        />
+      </div>
+      <div id="saved">
+        <SavedMapModule />
+      </div>
+      <div id="footer"></div>
+    </div>
+  );
 };
 
 export default MainContainerMember;
