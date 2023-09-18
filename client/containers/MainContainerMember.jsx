@@ -1,22 +1,45 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import SlidersModule from '../components/SlidersModule.jsx';
 import MapDisplayModule from '../components/MapDisplayModule.jsx';
 import SavedMapModule from '../components/SavedMapModule.jsx';
 import MapFunctionsModule from '../components/MapFunctionsModule.jsx';
+import { retrieveMapsFromShared } from '../components/MapFunctionsModule.jsx';
 
-const MainContainerMember = () => {
+const MainContainerMember = (props) => {
+  console.log('here is the username: ', props.username);
   // State management for sliders
   const [length, setLength] = useState(60);
   const [fill, setFill] = useState(40);
   const [smooth, setSmooth] = useState(8);
   // State management to prevent map from re-gen until after button is clicked
   const [shouldRegenerate, setShouldRegenerate] = useState(false);
+  const [friendmaps, setFriendMaps] = useState({});
+  console.log('friendmaps: ', friendmaps);
+
+  //This populates the friendmaps state with shared maps from friends.
+  useEffect(() => {
+    retrieveMapsFromShared(props)
+      .then(maps => {
+        const friendlyMaps = {};
+        for (let friend in maps) {
+          for (let map in maps[friend]) {
+            friendlyMaps[map] = maps[friend][map];
+          }
+        }
+        setFriendMaps(friendlyMaps);
+      })
+  }, [])
+
   // Hook for SVG download
   const svgRef = useRef(null);
-
   return (
     <div className="mainContainer">
-      <div id="banner"></div>
+      <div id="banner">
+        <img
+          id="banner-logo"
+          src="../assets/CaveGen.png"
+        />
+      </div>
       <div id="sliders">
         <SlidersModule
           length={length}
@@ -26,10 +49,11 @@ const MainContainerMember = () => {
           smooth={smooth}
           setSmooth={setSmooth}
           setShouldRegenerate={setShouldRegenerate}
+          username={props.username}
         />
       </div>
       <div id="mapfunc">
-        <MapFunctionsModule svgRef={svgRef} />
+        <MapFunctionsModule svgRef={svgRef} username={props.username} />
       </div>
       <div id="map">
         <MapDisplayModule
@@ -39,6 +63,7 @@ const MainContainerMember = () => {
           shouldRegenerate={shouldRegenerate}
           setShouldRegenerate={setShouldRegenerate}
           svgRef={svgRef}
+          username={props.username}
         />
       </div>
       <div id="saved">

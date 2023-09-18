@@ -8,6 +8,7 @@ const MapDisplayModule = ({
   shouldRegenerate,
   setShouldRegenerate,
   svgRef,
+  setCaveState
 }) => {
   return (
     <div id="mapDisplayModuleContainer">
@@ -20,6 +21,7 @@ const MapDisplayModule = ({
           smooth={smooth}
           shouldRegenerate={shouldRegenerate}
           setShouldRegenerate={setShouldRegenerate}
+          setCaveState={setCaveState}
         />
       </div>
     </div>

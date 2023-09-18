@@ -66,7 +66,7 @@ userController.getAllUsers = (req, res, next) => {
 userController.addMap = (req, res, next) => {
   const { username, newMap } = req.body;
   const { mapName, mapData } = newMap;
-
+  console.log('here is the data: ', username, newMap);
   User.findOne({ username }).exec()
     .then(user => {
       if (!user) {
