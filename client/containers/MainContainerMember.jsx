@@ -6,42 +6,39 @@ import MapFunctionsModule from '../components/MapFunctionsModule.jsx';
 import { retrieveMapsFromShared } from '../components/MapFunctionsModule.jsx';
 import { retrieveMapsFromCollection } from '../components/MapFunctionsModule.jsx';
 
-
 const MainContainerMember = (props) => {
-  // State management for sliders
-  const [length, setLength] = useState(60);
-  const [fill, setFill] = useState(40);
-  const [smooth, setSmooth] = useState(8);
-  const [shouldRegenerate, setShouldRegenerate] = useState(false);
-  const [friendmaps, setFriendMaps] = useState({});
-  const [privateMaps, setPrivateMaps] = useState({});
-  // console.log('here is the user: ', props.username);
-  console.log('friendmaps: ', friendmaps);
-  console.log('here are the privateMaps', privateMaps);
-  //This populates the friendmaps state with shared maps from friends.
-  useEffect(() => {
-    retrieveMapsFromShared(props)
-      .then(maps => {
-        const friendlyMaps = {};
-        for (let friend in maps) {
-          for (let map in maps[friend]) {
-            friendlyMaps[map] = maps[friend][map];
-          }
-        }
-        setFriendMaps(friendlyMaps);
-        retrieveMapsFromCollection(props)
-          .then(maps => {
-            const retrievedPrivateMaps = {};
-            for (let map in maps) {
-              retrievedPrivateMaps[map] = maps[map];
-            }
-            setPrivateMaps(retrievedPrivateMaps);
-          })
-      })
-  }, [])
+	// State management for sliders
+	const [length, setLength] = useState(60);
+	const [fill, setFill] = useState(40);
+	const [smooth, setSmooth] = useState(8);
+	const [shouldRegenerate, setShouldRegenerate] = useState(false);
 
-  // Hook for SVG download
-  const svgRef = useRef(null);
+	const [friendmaps, setFriendMaps] = useState({});
+	const [privateMaps, setPrivateMaps] = useState({});
+	console.log('friendmaps: ', friendmaps);
+
+	//This populates the friendmaps state with shared maps from friends.
+	useEffect(() => {
+		retrieveMapsFromShared(props).then((maps) => {
+			const friendlyMaps = {};
+			for (let friend in maps) {
+				for (let map in maps[friend]) {
+					friendlyMaps[map] = maps[friend][map];
+				}
+			}
+			setFriendMaps(friendlyMaps);
+			retrieveMapsFromCollection(props).then((maps) => {
+				const retrievedPrivateMaps = {};
+				for (let map in maps) {
+					retrievedPrivateMaps[map] = maps[map];
+				}
+				setPrivateMaps(retrievedPrivateMaps);
+			});
+		});
+	}, []);
+
+	// Hook for SVG download
+	const svgRef = useRef(null);
 
   return (
     <div className="mainContainer">

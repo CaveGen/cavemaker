@@ -1,24 +1,19 @@
 import React from 'react';
 import SavedMaps from './SavedMaps.jsx';
 
-const SavedMapModule = () => {
-  // andrew/map-functions
-  return (
-    <div className="savedMapModule">
-      <h2>Saved Maps</h2>
-      HEAD
-      <SavedMaps />
+const SavedMapModule = ({ friendmaps, privateMaps }) => {
+	return (
+		<div className='savedMapModule'>
+			<h2>Saved Maps</h2>
+			<SavedMaps friendmaps={friendmaps} privateMaps={privateMaps} />
+		</div>
+	);
 
-      dev
-    </div>
-  );
-
-  return (
-    <div className='savedMapModule'>
-      <h2>This is the Saved Map Module</h2>
-    </div>
-  );
-  dev
+	return (
+		<div className='savedMapModule'>
+			<h2>This is the Saved Map Module</h2>
+		</div>
+	);
 };
 
 export default SavedMapModule;
