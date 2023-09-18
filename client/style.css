@@ -55,6 +55,24 @@ body {
 	background-color: rgb(188, 210, 91);
 }
 
+.username-container {
+	width: 100%;
+	margin-bottom: 10px;
+}
+
+#existing-user-flag {
+	color: rgb(169, 1, 1);
+	opacity: 90%;
+	display: block;
+	width: 100%;
+	margin-bottom: 5px;
+}
+
+.password-container {
+	width: 100%;
+
+}
+
 #signup-div {
 	display: flex;
 	align-items: center;
@@ -73,7 +91,8 @@ h1 {
 }
 
 label {
-	color: whitesmoke
+	color: whitesmoke;
+	opacity: 95%;
 }
 
 .login-signup {
@@ -86,8 +105,27 @@ label {
 	justify-content: center;
 }
 
-#button {
+#login-page-button {
 	background-color: rgb(188, 210, 91);
+	border-radius: 10px;
+	background-image: linear-gradient(315deg, #e2e91a 0%, #3a3a3a 74%);
+	border: 1px solid black;
+	transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+#login-page-button:hover {
+	transform: scale(1.05);
+	animation: pulse 1s infinite alternate;
+}
+
+@keyframes pulse {
+	from {
+		transform: scale(1);
+	}
+
+	to {
+		transform: scale(1.03);
+	}
 }
 
 
@@ -95,6 +133,10 @@ label {
 	display: flex;
 	align-items: center;
 	justify-content: center;
+}
+
+.user-form {
+	margin-right: 10px;
 }
 
 .box {

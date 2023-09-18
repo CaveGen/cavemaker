@@ -8,9 +8,11 @@ const bcrypt = require('bcryptjs');
 // the ID is created for each of them unique, but I forget exactly what it's called...
 
 const userSchema = new mongoose.Schema({
-  username: { type: String, required: true },
-  password: { type: String, required: true},
-  savedMaps: {type: Object}
+  username: { type: String, required: true, unique: true },
+  password: { type: String, required: true },
+  savedMaps: { type: Object, default: {} },
+  sharedMaps: { type: Object, default: {} },
+  friendList: { type: Array, default: [] },
 });
 
 
