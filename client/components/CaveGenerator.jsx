@@ -13,6 +13,7 @@ function Cavern({
   smooth,
   shouldRegenerate,
   setShouldRegenerate,
+  svgRef,
 }) {
   const [boxes, setBoxes] = useState([]);
 
@@ -219,6 +220,7 @@ function Cavern({
   // return <div className="cavern">{boxes}</div>;
   return (
     <svg
+      ref={svgRef}
       width={length * 2 * 5}
       height={length * 2 * 5}
     >
