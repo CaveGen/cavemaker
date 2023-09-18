@@ -1,4 +1,6 @@
 nopmbody {
+  background-color: rgb(77, 70, 8);
+nopmbody {
 	background-color: rgb(77, 70, 8);
 }
 
@@ -8,6 +10,31 @@ nopmbody {
 	  justify-content: center;
   } */
 
+/* .mainContainer {
+  height: 100vh;
+  display: grid;
+  grid-template: auto / repeat(5, 1fr);
+  grid-template-areas:
+    'banner banner banner banner banner'
+    'sliders nav nav nav saved'
+    'sliders map map map saved'
+    'sliders map map map saved'
+    'sliders map map map saved'
+    'footer footer footer footer footer';
+} */
+
+.mainContainer {
+  height: 100vh;
+  display: grid;
+  grid-template: auto / repeat(5, 1fr);
+  grid-template-areas:
+    'banner banner banner banner banner'
+    'sliders mapfunc mapfunc mapfunc saved'
+    'sliders map map map saved'
+    'sliders map map map saved'
+    'sliders map map map saved'
+    'footer footer footer footer footer';
+}
 /* .mainContainer {
 	height: 100vh;
 	display: grid;
@@ -35,6 +62,12 @@ nopmbody {
 }
 
 #mapfunc {
+  /* set viewheight */
+  background-color: purple;
+  grid-area: mapfunc;
+  width: 60vw;
+  height: 5vh;
+#mapfunc {
 	/* set viewheight */
 	background-color: purple;
 	grid-area: mapfunc;
@@ -43,6 +76,10 @@ nopmbody {
 }
 
 #banner {
+  background-color: red;
+  grid-area: banner;
+  width: 100vw;
+  height: 15vh;
 	background-color: red;
 	grid-area: banner;
 	width: 100vw;
@@ -50,6 +87,10 @@ nopmbody {
 }
 
 #sliders {
+  background-color: orange;
+  grid-area: sliders;
+  width: 20vw;
+  height: 75vh;
 	background-color: orange;
 	grid-area: sliders;
 	width: 20vw;
@@ -57,6 +98,16 @@ nopmbody {
 }
 
 #map {
+  background-color: white;
+  grid-area: map;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: auto;
+  max-width: 60vw;
+  max-height: 75vh;
+  overflow: auto;
 	background-color: white;
 	grid-area: map;
 	display: flex;
@@ -70,6 +121,10 @@ nopmbody {
 }
 
 #saved {
+  background-color: blue;
+  grid-area: saved;
+  width: 20vw;
+  height: 75vh;
 	background-color: blue;
 	grid-area: saved;
 	width: 20vw;
@@ -77,6 +132,10 @@ nopmbody {
 }
 
 #footer {
+  background-color: red;
+  grid-area: footer;
+  width: 100vw;
+  height: 10vh;
 	background-color: red;
 	grid-area: footer;
 	width: 100vw;
@@ -90,47 +149,46 @@ nopmbody {
   } */
 
 #button {
-	background-color: rgb(188, 210, 91);
+  background-color: rgb(188, 210, 91);
 }
 
 #signup-div {
-	display: flex;
-	align-items: center;
-	justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .cavern {
-	display: flex;
-	flex-wrap: wrap;
-	padding: 20px;
-	width: 600px;
-	height: 600px;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 20px;
+  width: 600px;
+  height: 600px;
 }
-
 .box#wall {
-	width: 10px;
-	height: 10px;
-	background-color: rgb(60, 60, 60);
+  width: 10px;
+  height: 10px;
+  background-color: rgb(60, 60, 60);
 }
 
 .box#space {
-	width: 10px;
-	height: 10px;
-	background-color: rgb(155, 155, 155);
+  width: 10px;
+  height: 10px;
+  background-color: rgb(155, 155, 155);
 }
 
 .mapDisplayModuleContainer {
-	display: flex;
-	flex-direction: column;
-	width: 100vw;
-	height: 100vh;
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
 }
 
 .mapDisplayModule {
-	padding: 20px;
+  padding: 20px;
 }
 
 .mapDisplayModule svg {
-	display: flex;
-	flex-wrap: wrap;
+  display: flex;
+  flex-wrap: wrap;
 }
