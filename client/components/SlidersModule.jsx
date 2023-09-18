@@ -74,11 +74,13 @@ const SlidersModule = ({
           <span className="slider-maxValue">15</span>
         </div>
         <div id="randomizeSliders">
-          <button onClick={randomizeSliders}>Randomize Sliders</button>
+          <button onClick={randomizeSliders}>
+            <p>Randomize Sliders</p>
+          </button>
         </div>
         <div id="generateCavern">
           <button onClick={() => setShouldRegenerate(true)}>
-            Generate Map
+            <p>Generate Map</p>
           </button>
         </div>
       </div>
