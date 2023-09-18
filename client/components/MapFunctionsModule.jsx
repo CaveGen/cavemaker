@@ -1,7 +1,14 @@
 import React from 'react';
 
-const downloadMapImage = () => {
-  console.log('Download map image!');
+const downloadMapImage = ({ svgRef }) => {
+  // Grab the svg element
+  const svgElement = svgRef.current;
+
+  // Serialize SVG to string
+  const serializer = new XMLSerializer();
+  const svgString = serializer.serializeToString(svgElement);
+
+  //
 };
 
 const saveMapToCollection = () => {
@@ -11,6 +18,8 @@ const saveMapToCollection = () => {
 const searchDbForUser = () => {
   console.log('Search the database for a user!');
 };
+
+const retrieveMapsFromShared = () => {};
 
 const shareMapWithUser = () => {
   console.log('Map Shared with user!');

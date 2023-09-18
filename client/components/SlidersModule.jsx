@@ -17,11 +17,6 @@ const SlidersModule = ({
     setSliderValues(newSliderValues);
   };
 
-  // Functio to assign random values to each slider
-  const randomSliders = ()=> { 
-    cosnt randomLength = () => Math.floor(Math.random)
-  }
-
   return (
     <div className="slidersModule">
       <div className="slider-container">
