@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import SlidersModule from '../components/SlidersModule.jsx';
 import MapDisplayModule from '../components/MapDisplayModule.jsx';
 import SavedMapModule from '../components/SavedMapModule.jsx';
+import MapFunctionsModule from '../components/MapFunctionsModule.jsx';
 
 const MainContainerMember = () => {
   // State management for sliders
@@ -24,7 +25,9 @@ const MainContainerMember = () => {
           setShouldRegenerate={setShouldRegenerate}
         />
       </div>
-      {/* <div id="nav"></div> */}
+      <div id="mapfunc">
+        <MapFunctionsModule />
+      </div>
       <div id="map">
         <MapDisplayModule
           length={length}

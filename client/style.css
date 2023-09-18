@@ -27,16 +27,17 @@ nopmbody {
   grid-template: auto / repeat(5, 1fr);
   grid-template-areas:
     'banner banner banner banner banner'
-    'sliders map map map saved'
+    'sliders mapfunc mapfunc mapfunc saved'
     'sliders map map map saved'
     'sliders map map map saved'
     'sliders map map map saved'
     'footer footer footer footer footer';
 }
 
-#nav {
+#mapfunc {
+  /* set viewheight */
   background-color: purple;
-  grid-area: nav;
+  grid-area: mapfunc;
   width: 60vw;
   height: 5vh;
 }

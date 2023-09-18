@@ -1,4 +1,3 @@
-import e from 'cors';
 import React, { useState } from 'react';
 
 const SlidersModule = ({
@@ -17,6 +16,7 @@ const SlidersModule = ({
     newSliderValues[index] = event.target.value;
     setSliderValues(newSliderValues);
   };
+
 
   const randomizeSliders = () => {
     const randomLength = Math.floor(Math.random() * (100 - 10 + 1)) + 10;
