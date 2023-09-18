@@ -1,32 +1,12 @@
 import React from 'react';
 
-const downloadMapImage = ({ svgRef }) => {
-  // Grab the map and assign it to variable
-  const svgElement = svgRef.current;
-
-  // Serialize SVG to string
-  const serializer = new XMLSerializer();
-  const svgString = serializer.serializeToString(svgElement);
-  console.log(svgString);
-  // Create Blob object from SVG string
-  const blob = new Blob([svgString], {
-    type: 'image/svg+xml;charset=utf-8',
-  });
-
-  // Convert Blob to a data URL
-  const url = URL.createObjectURL(blob);
-
-  console.log(blob);
-  // Create an `<a>` element and trigger the download
-  const a = document.createElement('a');
-  a.href = url;
-  a.download = 'download.svg';
-  a.click();
+const downloadMapImage = () => {
+  console.log('Download map image!');
 };
 
+
 const saveMapToCollection = ({ svgRef, username }) => {
-  console.log('Save Map to Collection!');
-  console.log('here is the username in the savemapcollection : ', username);
+  console.log('Saved Map to Collection!');
   // Grab the map and assign it to variable
   const svgElement = svgRef.current;
 
@@ -40,7 +20,6 @@ const saveMapToCollection = ({ svgRef, username }) => {
   });
 
   fetch('http://localhost:3000/map/create', {
-    //What should this URI be?
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -56,11 +35,29 @@ const saveMapToCollection = ({ svgRef, username }) => {
     .then((res) => res.json())
     .then((data) => alert('Your map has been saved!'))
     .catch((error) => console.error('Error:', error));
+
 };
+
+const deleteMapFromCollection = ({ username }) => {
+  fetch('http://localhost:3000/map/delete', {
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      "username": username,
+      "mapName": 'MAP NAME STATE HERE'
+    })
+  })
+    .then((res) => res.json())
+    .then((data) => alert('Your map has been removed!'))
+    .catch((error) => console.error('Error:', error));
+}
 
 const searchDbForUser = () => {
   console.log('Search the database for a user!');
 };
+
 
 export const retrieveMapsFromShared = ({ username }) => {
   return fetch(`http://localhost:3000/friendmaps/${username}`)
@@ -74,25 +71,114 @@ export const retrieveMapsFromShared = ({ username }) => {
     })
 };
 
-const shareMapWithUser = () => {
-  console.log('Map Shared with user!');
+export const retrieveMapsFromCollection = ({ username }) => {
+  return fetch(`http://localhost:3000/mapcollection/${username}`)
+    .then(res => res.json())
+    .then(data => {
+      return data.maps;
+    })
+    .catch(err => {
+      console.error('Error fetching friend maps: ', err);
+      return [];
+    })
+}
+
+const shareMapWithUser = ({ svgRef, username }) => {
+  console.log('Added to shared maps!');
+  // Grab the map and assign it to variable
+  const svgElement = svgRef.current;
+
+  // Serialize the map SVG to a string
+  const serializer = new XMLSerializer();
+  const svgString = serializer.serializeToString(svgElement);
+
+  // Create Blob object from SVG String
+  const blob = new Blob([svgString], {
+    type: 'image/svg+xml;charset=utf-8',
+  });
+
+  fetch('http://localhost:3000/map/share', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      "username": username,
+      "mapName": 'MAP NAME STATE HERE',
+      "mapData": svgString
+    })
+  })
+    .then((res) => res.json())
+    .then((data) => alert('Your map has been shared!'))
+    .catch((error) => console.error('Error:', error));
 };
 
+const unshareMapWithUser = ({ username }) => {
+  fetch('http://localhost:3000/map/unshare', {
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      "username": username,
+      "mapName": 'MAP NAME STATE HERE'
+    })
+  })
+    .then((res) => res.json())
+    .then((data) => alert('Your map has been unshared!'))
+    .catch((error) => console.error('Error:', error));
+}
+
+const addFriend = ({ username }) => {
+  fetch('http://localhost:3000/friend/add', {
+
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      "username": username,
+      "friend": 'FRIEND NAME STATE HERE'
+    })
+  })
+    .then((res) => res.json())
+    .then((data) => alert('Friend added! You can now share your maps that you authorize with them!'))
+    .catch((error) => console.error('Error:', error));
+}
+
+const removeFriend = ({ username }) => {
+  fetch('http://localhost:3000/friend/delete', {
+
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      "username": username,
+      "friend": 'FRIEND NAME STATE HERE'
+    })
+  })
+    .then((res) => res.json())
+    .then((data) => alert('Friend removed. They can no longer see maps you\'ve shared.'))
+    .catch((error) => console.error('Error:', error));
+}
+
 const MapFunctionsModule = ({ svgRef, username }) => {
+
   return (
     <div className="mapFunctionsModule">
       <div className="mapFunctionsContainer">
         <button
           className="mapFunctionsButtons"
           id="saveMapImageButton"
-          onClick={() => downloadMapImage({ svgRef })}
+          onClick={downloadMapImage}
         >
           Download Map
         </button>
         <button
           className="mapFunctionsButtons"
           id="saveMapToCollectionButton"
-          onClick={() => saveMapToCollection({ svgRef, username })}
+          onClick={saveMapToCollection}
         >
           Save Map to Collection
         </button>

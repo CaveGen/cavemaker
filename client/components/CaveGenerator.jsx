@@ -13,15 +13,13 @@ function Cavern({
   smooth,
   shouldRegenerate,
   setShouldRegenerate,
-  svgRef,
-  setCaveState
 }) {
   const [boxes, setBoxes] = useState([]);
 
-  // console.log('here is topRank', topRank);
-  // console.log('here is bottomRank', bottomRank);
-  // console.log('here is leftFile', leftFile);
-  // console.log('here is rightFile', rightFile);
+  console.log('here is topRank', topRank);
+  console.log('here is bottomRank', bottomRank);
+  console.log('here is leftFile', leftFile);
+  console.log('here is rightFile', rightFile);
 
   useEffect(() => {
     if (shouldRegenerate) {
@@ -91,7 +89,8 @@ function Cavern({
       setBoxes([...arr]);
       await new Promise((r) => setTimeout(r, interval));
     }
-    setCaveState([...arr]);
+
+
   }
 
   function generateCave(length, fill, smooth) {
@@ -221,9 +220,7 @@ function Cavern({
 
   // return <div className="cavern">{boxes}</div>;
   return (
-
     <svg
-      ref={svgRef}
       width={length * 2 * 5}
       height={length * 2 * 5}
     >

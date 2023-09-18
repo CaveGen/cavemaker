@@ -1,173 +1,172 @@
 :root {
-  --dark-green: #474b24;
-  --silver: #c1bdb3;
-  --bright-green: #879d26;
-  --dark-gray: #453b3b;
+	--dark-green: #474b24;
+	--silver: #c1bdb3;
+	--bright-green: #879d26;
+	--dark-gray: #453b3b;
 }
 
 .mainContainer {
-  height: 100vh;
-  display: grid;
-  grid-template: auto / repeat(5, 1fr);
-  grid-template-areas:
-    'banner banner banner banner banner'
-    'sliders mapfunc mapfunc mapfunc saved'
-    'sliders map map map saved'
-    'sliders map map map saved'
-    'sliders map map map saved'
-    'footer footer footer footer footer';
+	height: 100vh;
+	display: grid;
+	grid-template: auto / repeat(5, 1fr);
+	grid-template-areas:
+		'banner banner banner banner banner'
+		'sliders mapfunc mapfunc mapfunc saved'
+		'sliders map map map saved'
+		'sliders map map map saved'
+		'sliders map map map saved'
+		'footer footer footer footer footer';
 }
 
 #banner {
-  /* background-color: var(--dark-gray); */
-  grid-area: banner;
-  width: 100vw;
-  height: 15vh;
+	/* background-color: var(--dark-gray); */
+	grid-area: banner;
+	width: 100vw;
+	height: 15vh;
 }
 
 #sliders {
-  grid-area: sliders;
-  width: 20vw;
-  height: 75vh;
+	grid-area: sliders;
+	width: 20vw;
+	height: 75vh;
 }
 
 #mapfunc {
-  grid-area: mapfunc;
-  width: 60vw;
-  height: 5vh;
+	grid-area: mapfunc;
+	width: 60vw;
+	height: 5vh;
 }
 
 #banner-logo {
-  margin: 3vh 0vh 0vh 5vh;
+	margin: 3vh 0vh 0vh 5vh;
 }
 
 #saved {
-  grid-area: saved;
-  width: 20vw;
-  height: 75vh;
+	grid-area: saved;
+	width: 20vw;
+	height: 75vh;
 }
 
 #gridSlider label,
 #fillSlider label,
 #smoothingSlider label {
-  display: block;
+	display: block;
 }
 
 .slider-container {
-  margin-top: 10vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: center;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
-    Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  color: white;
-  font-weight: 100;
-  /* padding-left: 7.5vh; */
+	margin-top: 10vh;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	align-items: center;
+	font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+	color: white;
+	font-weight: 100;
+	/* padding-left: 7.5vh; */
 }
 
 .slider-container label {
-  font-weight: bold;
-  text-align: justify;
-  margin-top: 3vh;
-  font-family: 'VT323';
-  font-size: 2rem;
+	font-weight: bold;
+	text-align: justify;
+	margin-top: 3vh;
+	font-family: 'VT323';
+	font-size: 2rem;
 }
 
 .slider {
-  -webkit-appearance: none;
-  width: 10vw;
-  appearance: none;
-  border-radius: 5px;
-  height: 0.5vh;
-  outline: none;
-  -webkit-transition: 0.2s;
-  transition: opacity 0.2s;
-  margin-top: 1vh;
-  margin-bottom: 3vh;
-  /* line-height: 4em; */
+	-webkit-appearance: none;
+	width: 10vw;
+	appearance: none;
+	border-radius: 5px;
+	height: 0.5vh;
+	outline: none;
+	-webkit-transition: 0.2s;
+	transition: opacity 0.2s;
+	margin-top: 1vh;
+	margin-bottom: 3vh;
+	/* line-height: 4em; */
 }
 
 .slider::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 15px;
-  height: 15px;
-  border-radius: 50%;
-  background: var(--bright-green);
-  cursor: pointer;
+	-webkit-appearance: none;
+	appearance: none;
+	width: 15px;
+	height: 15px;
+	border-radius: 50%;
+	background: var(--bright-green);
+	cursor: pointer;
 }
 
 .slider::-moz-range-thumb {
-  width: 15px;
-  height: 15px;
-  border-radius: 50%;
-  background: #04aa6d;
-  cursor: pointer;
+	width: 15px;
+	height: 15px;
+	border-radius: 50%;
+	background: #04aa6d;
+	cursor: pointer;
 }
 
 .slider-minValue,
 .slider-maxValue {
-  position: relative;
-  top: 2.5vh;
-  width: auto;
-  font-family: 'VT323';
-  font-size: 2rem;
+	position: relative;
+	top: 2.5vh;
+	width: auto;
+	font-family: 'VT323';
+	font-size: 2rem;
 }
 
 #randomizeSliders button,
 #generateCavern button {
-  color: var(--bright-green);
-  display: flex;
-  justify-content: center;
-  background-color: transparent;
-  border: none;
-  height: 5vh;
+	color: var(--bright-green);
+	display: flex;
+	justify-content: center;
+	background-color: transparent;
+	border: none;
+	height: 5vh;
 }
 
 #randomizeSliders p,
 #generateCavern p {
-  color: var(--bright-green);
-  font-family: 'VT323';
-  background-color: transparent;
-  border: none;
-  font-size: 2rem;
-  text-align: center;
+	color: var(--bright-green);
+	font-family: 'VT323';
+	background-color: transparent;
+	border: none;
+	font-size: 2rem;
+	text-align: center;
 }
 
 #map {
-  background-color: white;
-  grid-area: map;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  overflow: auto;
-  max-width: 60vw;
-  max-height: 75vh;
-  overflow: auto;
-  background-color: white;
-  grid-area: map;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  overflow: auto;
-  max-width: 60vw;
-  max-height: 75vh;
-  overflow: auto;
+	background-color: white;
+	grid-area: map;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	overflow: auto;
+	max-width: 60vw;
+	max-height: 75vh;
+	overflow: auto;
+	background-color: white;
+	grid-area: map;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	overflow: auto;
+	max-width: 60vw;
+	max-height: 75vh;
+	overflow: auto;
 }
 
 #saved {
-  grid-area: saved;
-  width: 20vw;
-  height: 75vh;
+	grid-area: saved;
+	width: 20vw;
+	height: 75vh;
 }
 
 #footer {
-  grid-area: footer;
-  width: 100vw;
-  height: 10vh;
+	grid-area: footer;
+	width: 100vw;
+	height: 10vh;
 }
 
 /* #board-wrapper {
@@ -177,159 +176,159 @@
   } */
 
 #button {
-  background-color: rgb(188, 210, 91);
+	background-color: rgb(188, 210, 91);
 }
 
 #signup-div {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 
 .cavern {
-  display: flex;
-  flex-wrap: wrap;
-  padding: 20px;
-  width: 600px;
-  height: 600px;
+	display: flex;
+	flex-wrap: wrap;
+	padding: 20px;
+	width: 600px;
+	height: 600px;
 }
 
 .box#wall {
-  width: 10px;
-  height: 10px;
-  background-color: rgb(60, 60, 60);
+	width: 10px;
+	height: 10px;
+	background-color: rgb(60, 60, 60);
 }
 
 .box#space {
-  width: 10px;
-  height: 10px;
-  background-color: rgb(155, 155, 155);
+	width: 10px;
+	height: 10px;
+	background-color: rgb(155, 155, 155);
 }
 
 .mapDisplayModuleContainer {
-  display: flex;
-  flex-direction: column;
-  width: 100vw;
-  height: 100vh;
+	display: flex;
+	flex-direction: column;
+	width: 100vw;
+	height: 100vh;
 }
 
 .mapDisplayModule {
-  padding: 20px;
+	padding: 20px;
 }
 
 .mapDisplayModule svg {
-  display: flex;
-  flex-wrap: wrap;
+	display: flex;
+	flex-wrap: wrap;
 }
 
 #board-wrapper {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 
 #button {
-  background-color: rgb(188, 210, 91);
+	background-color: rgb(188, 210, 91);
 }
 
 .username-container {
-  width: 100%;
-  margin-bottom: 10px;
+	width: 100%;
+	margin-bottom: 10px;
 }
 
 #existing-user-flag {
-  color: rgb(169, 1, 1);
-  opacity: 90%;
-  display: block;
-  width: 100%;
-  margin-bottom: 5px;
+	color: rgb(169, 1, 1);
+	opacity: 90%;
+	display: block;
+	width: 100%;
+	margin-bottom: 5px;
 }
 
 .password-container {
-  width: 100%;
+	width: 100%;
 }
 
 #signup-div {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 
 body {
-  background-color: rgb(8, 7, 4);
+	background-color: rgb(8, 7, 4);
 }
 
 h1 {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: whitesmoke;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	color: whitesmoke;
 }
 
 label {
-  color: whitesmoke;
-  opacity: 95%;
+	color: whitesmoke;
+	opacity: 95%;
 }
 
 .login-signup {
-  margin-top: 35vh;
+	margin-top: 35vh;
 }
 
 #board-wrapper {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 
 #login-page-button {
-  background-color: rgb(188, 210, 91);
-  border-radius: 10px;
-  background-image: linear-gradient(315deg, #e2e91a 0%, #3a3a3a 74%);
-  border: 1px solid black;
-  transition: background-color 0.3s ease, transform 0.3s ease;
+	background-color: rgb(188, 210, 91);
+	border-radius: 10px;
+	background-image: linear-gradient(315deg, #e2e91a 0%, #3a3a3a 74%);
+	border: 1px solid black;
+	transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 #login-page-button:hover {
-  transform: scale(1.05);
-  animation: pulse 1s infinite alternate;
+	transform: scale(1.05);
+	animation: pulse 1s infinite alternate;
 }
 
 @keyframes pulse {
-  from {
-    transform: scale(1);
-  }
+	from {
+		transform: scale(1);
+	}
 
-  to {
-    transform: scale(1.03);
-  }
+	to {
+		transform: scale(1.03);
+	}
 }
 
 #signup-div {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 
 .user-form {
-  margin-right: 10px;
+	margin-right: 10px;
 }
 
 .box {
-  width: 10px;
-  height: 10px;
+	width: 10px;
+	height: 10px;
 }
 
 #wall {
-  background-color: black;
+	background-color: black;
 }
 
 #space {
-  background-color: whitesmoke;
+	background-color: whitesmoke;
 }
 
 .cavern {
-  width: 600px;
-  border: solid 1px black;
-  display: grid;
-  grid-template-columns: repeat(60, 1fr);
+	width: 600px;
+	border: solid 1px black;
+	display: grid;
+	grid-template-columns: repeat(60, 1fr);
 }

@@ -66,7 +66,7 @@ userController.getAllUsers = (req, res, next) => {
 userController.addMap = (req, res, next) => {
   const { username, newMap } = req.body;
   const { mapName, mapData } = newMap;
-  console.log('here is the data: ', username, newMap);
+
   User.findOne({ username }).exec()
     .then(user => {
       if (!user) {
@@ -242,6 +242,27 @@ userController.getFriendMaps = (req, res, next) => {
       res.locals.friendListMaps = friendMaps;
       console.log('all the friendly maps: ', res.locals.friendListMaps);
       return next();
+    })
+    .catch(err => {
+      const error = { log: 'Failed during userController.getFriendMaps.' };
+      return next(error);
+    })
+}
+
+
+userController.getPrivateMaps = (req, res, next) => {
+  const { username } = req.params;
+
+  User.findOne({ username }).exec()
+    .then(user => {
+      console.log(`Found the user ${user}`)
+      const mapCollection = {};
+      for (let key in user.savedMaps) {
+        mapCollection[key] = user.savedMaps[key];
+      }
+      res.locals.mapCollection = mapCollection;
+      console.log('the maps, hopefully.', res.locals.mapCollection);
+      return next()
     })
     .catch(err => {
       const error = { log: 'Failed during userController.getFriendMaps.' };
