@@ -35,7 +35,7 @@ function App() {
     if (isLoggedIn) {
         //add in routes if you wanna use Navigate method from other pages
         console.log('made it past check');
-        return <CaveMaker username={username}/>;
+        return <CaveMaker />;
     }
 
 
