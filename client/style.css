@@ -1,7 +1,5 @@
 nopmbody {
   background-color: rgb(77, 70, 8);
-nopmbody {
-	background-color: rgb(77, 70, 8);
 }
 
 /* h1 {
@@ -35,6 +33,7 @@ nopmbody {
     'sliders map map map saved'
     'footer footer footer footer footer';
 }
+
 /* .mainContainer {
 	height: 100vh;
 	display: grid;
@@ -49,16 +48,16 @@ nopmbody {
   } */
 
 .mainContainer {
-	height: 100vh;
-	display: grid;
-	grid-template: auto / repeat(5, 1fr);
-	grid-template-areas:
-		'banner banner banner banner banner'
-		'sliders mapfunc mapfunc mapfunc saved'
-		'sliders map map map saved'
-		'sliders map map map saved'
-		'sliders map map map saved'
-		'footer footer footer footer footer';
+  height: 100vh;
+  display: grid;
+  grid-template: auto / repeat(5, 1fr);
+  grid-template-areas:
+    'banner banner banner banner banner'
+    'sliders mapfunc mapfunc mapfunc saved'
+    'sliders map map map saved'
+    'sliders map map map saved'
+    'sliders map map map saved'
+    'footer footer footer footer footer';
 }
 
 #mapfunc {
@@ -67,23 +66,18 @@ nopmbody {
   grid-area: mapfunc;
   width: 60vw;
   height: 5vh;
-#mapfunc {
-	/* set viewheight */
-	background-color: purple;
-	grid-area: mapfunc;
-	width: 60vw;
-	height: 5vh;
 }
+
 
 #banner {
   background-color: red;
   grid-area: banner;
   width: 100vw;
   height: 15vh;
-	background-color: red;
-	grid-area: banner;
-	width: 100vw;
-	height: 15vh;
+  background-color: red;
+  grid-area: banner;
+  width: 100vw;
+  height: 15vh;
 }
 
 #sliders {
@@ -91,10 +85,10 @@ nopmbody {
   grid-area: sliders;
   width: 20vw;
   height: 75vh;
-	background-color: orange;
-	grid-area: sliders;
-	width: 20vw;
-	height: 75vh;
+  background-color: orange;
+  grid-area: sliders;
+  width: 20vw;
+  height: 75vh;
 }
 
 #map {
@@ -108,16 +102,16 @@ nopmbody {
   max-width: 60vw;
   max-height: 75vh;
   overflow: auto;
-	background-color: white;
-	grid-area: map;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-	overflow: auto;
-	max-width: 60vw;
-	max-height: 75vh;
-	overflow: auto;
+  background-color: white;
+  grid-area: map;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: auto;
+  max-width: 60vw;
+  max-height: 75vh;
+  overflow: auto;
 }
 
 #saved {
@@ -125,10 +119,10 @@ nopmbody {
   grid-area: saved;
   width: 20vw;
   height: 75vh;
-	background-color: blue;
-	grid-area: saved;
-	width: 20vw;
-	height: 75vh;
+  background-color: blue;
+  grid-area: saved;
+  width: 20vw;
+  height: 75vh;
 }
 
 #footer {
@@ -136,10 +130,10 @@ nopmbody {
   grid-area: footer;
   width: 100vw;
   height: 10vh;
-	background-color: red;
-	grid-area: footer;
-	width: 100vw;
-	height: 10vh;
+  background-color: red;
+  grid-area: footer;
+  width: 100vw;
+  height: 10vh;
 }
 
 /* #board-wrapper {
@@ -165,6 +159,7 @@ nopmbody {
   width: 600px;
   height: 600px;
 }
+
 .box#wall {
   width: 10px;
   height: 10px;
