@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import SlidersModule from '../components/SlidersModule.jsx';
 import MapDisplayModule from '../components/MapDisplayModule.jsx';
 import SavedMapModule from '../components/SavedMapModule.jsx';
@@ -9,7 +9,10 @@ const MainContainerMember = () => {
   const [length, setLength] = useState(60);
   const [fill, setFill] = useState(40);
   const [smooth, setSmooth] = useState(8);
+  // State management to prevent map from re-gen until after button is clicked
   const [shouldRegenerate, setShouldRegenerate] = useState(false);
+  // Hook for SVG download
+  const svgRef = useRef(null);
 
   return (
     <div className="mainContainer">
@@ -26,7 +29,7 @@ const MainContainerMember = () => {
         />
       </div>
       <div id="mapfunc">
-        <MapFunctionsModule />
+        <MapFunctionsModule svgRef={svgRef} />
       </div>
       <div id="map">
         <MapDisplayModule
@@ -35,6 +38,7 @@ const MainContainerMember = () => {
           smooth={smooth}
           shouldRegenerate={shouldRegenerate}
           setShouldRegenerate={setShouldRegenerate}
+          svgRef={svgRef}
         />
       </div>
       <div id="saved">

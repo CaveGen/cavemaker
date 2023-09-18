@@ -17,7 +17,6 @@ const SlidersModule = ({
     setSliderValues(newSliderValues);
   };
 
-
   const randomizeSliders = () => {
     const randomLength = Math.floor(Math.random() * (100 - 10 + 1)) + 10;
     const randomFill = Math.floor(Math.random() * (100 - 10 + 1)) + 10;
@@ -67,9 +66,7 @@ const SlidersModule = ({
           <input
             type="range"
             min="0"
-
             max="20"
-
             value={smooth}
             onChange={(e) => setSmooth(e.target.value)}
           />
