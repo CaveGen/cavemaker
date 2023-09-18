@@ -1,16 +1,24 @@
 import React from 'react';
-
-const thumbnailDisplay = () => {
-  for (const map in savedMaps) {
-  }
-};
+import SavedMaps from './SavedMaps.jsx';
 
 const SavedMapModule = () => {
+andrew/map-functions
   return (
     <div className="savedMapModule">
       <h2>Saved Maps</h2>
+ HEAD
+      <SavedMaps />
+
+dev
     </div>
   );
+
+	return (
+		<div className='savedMapModule'>
+			<h2>This is the Saved Map Module</h2>
+		</div>
+	);
+ dev
 };
 
 export default SavedMapModule;
