@@ -16,6 +16,7 @@ const downloadMapImage = ({ svgRef }) => {
   // Convert Blob to a data URL
   const url = URL.createObjectURL(blob);
 
+  console.log(blob);
   // Create an `<a>` element and trigger the download
   const a = document.createElement('a');
   a.href = url;
