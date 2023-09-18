@@ -1,22 +1,22 @@
 import React from 'react';
 
 const SavedMaps = ({ friendmaps, privateMaps }) => {
+	console.log('private maps in SavedMap', privateMaps);
 	const combinedCollection = Object.assign({}, friendmaps, privateMaps);
+	console.log(combinedCollection);
 
 	const mapDisplayGenerator = (mapName, mapData) => {
 		return (
 			<div className='map-thumbnail' id={mapName}>
 				<p>{mapName}</p>
-				<svg>{mapData}</svg>
+				<svg width='50' height='50' viewBox='0 0 600 600' dangerouslySetInnerHTML={{ __html: mapData }} />
 			</div>
 		);
 	};
 
 	// Checks if number of saved maps is greater than 0
 	if (Object.keys(combinedCollection).length > 0) {
-		return Object.entries(combinedCollection).forEach(([mapName, mapData]) => {
-			mapDisplayGenerator(mapName, mapData);
-		});
+		return <div id='thumbnail-display'>{Object.entries(combinedCollection).map(([mapName, mapData]) => mapDisplayGenerator(mapName, mapData))}</div>;
 		// If no saved maps, display message
 	} else {
 		return (
