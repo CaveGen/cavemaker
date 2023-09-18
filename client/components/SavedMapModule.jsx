@@ -10,10 +10,7 @@ const SavedMapModule = () => {
   return (
     <div className="savedMapModule">
       <h2>Saved Maps</h2>
-<<<<<<< HEAD
       <SavedMaps />
-=======
->>>>>>> dev
     </div>
   );
 };
