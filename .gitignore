@@ -1,3 +1,5 @@
 node_modules
 .DS_Store
 .prettierrc
+client/assets/CaveGen.psd
+client/cavegen.psd
