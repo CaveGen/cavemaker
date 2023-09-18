@@ -89,6 +89,8 @@ function Cavern({
       setBoxes([...arr]);
       await new Promise((r) => setTimeout(r, interval));
     }
+
+
   }
 
   function generateCave(length, fill, smooth) {
