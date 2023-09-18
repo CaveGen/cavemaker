@@ -4,6 +4,7 @@ import MapDisplayModule from '../components/MapDisplayModule.jsx';
 import SavedMapModule from '../components/SavedMapModule.jsx';
 import MapFunctionsModule from '../components/MapFunctionsModule.jsx';
 import { retrieveMapsFromShared } from '../components/MapFunctionsModule.jsx';
+import { retrieveMapsFromCollection } from '../components/MapFunctionsModule.jsx';
 
 const MainContainerMember = (props) => {
   console.log('here is the username: ', props.username);
@@ -14,6 +15,7 @@ const MainContainerMember = (props) => {
   // State management to prevent map from re-gen until after button is clicked
   const [shouldRegenerate, setShouldRegenerate] = useState(false);
   const [friendmaps, setFriendMaps] = useState({});
+  const [privateMaps, setPrivateMaps] = useState({});
   console.log('friendmaps: ', friendmaps);
 
   //This populates the friendmaps state with shared maps from friends.
@@ -27,6 +29,14 @@ const MainContainerMember = (props) => {
           }
         }
         setFriendMaps(friendlyMaps);
+        retrieveMapsFromCollection(props)
+          .then(maps => {
+            const retrievedPrivateMaps = {};
+            for (let map in maps) {
+              retrievedPrivateMaps[map] = maps[map];
+            }
+            setPrivateMaps(retrievedPrivateMaps);
+          })
       })
   }, [])
 

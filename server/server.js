@@ -70,6 +70,10 @@ app.get('/friendmaps/:username', userController.getFriendMaps, (req, res) => {
   res.status(200).json({ message: 'Maps gathered from friends!', success: true, maps: res.locals.friendListMaps })
 })
 
+app.get('/mapcollection/:username', userController.getPrivateMaps, (req, res) => {
+  res.status(200).json({ message: 'Maps gathered from private collection.', success: true, maps: res.locals.mapCollection })
+})
+
 app.post('/friend/add', userController.addFriend, (req, res) => {
   res.status(200).json({ message: 'Friend added!', success: true })
 })

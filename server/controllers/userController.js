@@ -250,6 +250,27 @@ userController.getFriendMaps = (req, res, next) => {
 }
 
 
+userController.getPrivateMaps = (req, res, next) => {
+  const { username } = req.params;
+
+  User.findOne({ username }).exec()
+    .then(user => {
+      console.log(`Found the user ${user}`)
+      const mapCollection = {};
+      for (let key in user.savedMaps) {
+        mapCollection[key] = user.savedMaps[key];
+      }
+      res.locals.mapCollection = mapCollection;
+      console.log('the maps, hopefully.', res.locals.mapCollection);
+      return next()
+    })
+    .catch(err => {
+      const error = { log: 'Failed during userController.getFriendMaps.' };
+      return next(error);
+    })
+}
+
+
 
 
 module.exports = userController
