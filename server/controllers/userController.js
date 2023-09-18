@@ -124,11 +124,8 @@ userController.shareMap = (req, res, next) => {
 
   User.findOne({ username }).exec()
     .then(user => {
-      if (!user.savedMaps[mapName]) {
-        user.savedMaps[mapName] = mapData;
-        user.markModified('savedMaps');
-        console.log('the map did not exist within the user db so we added it as well.')
-      }
+      user.savedMaps[mapName] = mapData;
+      user.markModified('savedMaps');
       user.sharedMaps[mapName] = mapData;
       user.markModified('sharedMaps');
       return user.save();
