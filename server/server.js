@@ -27,7 +27,8 @@ app.use(express.static('public'));
 // app.use('/user', userRouter);
 
 //app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
+app.use(express.json({ limit: '50mb' }));
+app.use(express.urlencoded({ limit: '50mb', extended: true }));
 
 app.get('/users', userController.getAllUsers, (req, res) => {
   res.status(200).send(res.locals.users);
@@ -66,7 +67,7 @@ app.delete('/map/unshare', userController.unshareMap, (req, res) => {
 })
 
 app.get('/friendmaps/:username', userController.getFriendMaps, (req, res) => {
-  res.status(200).json({ message: 'Maps gathered from friends!', success: true })
+  res.status(200).json({ message: 'Maps gathered from friends!', success: true, maps: res.locals.friendListMaps })
 })
 
 app.post('/friend/add', userController.addFriend, (req, res) => {
