@@ -16,7 +16,12 @@ const MainContainerMember = () => {
 
   return (
     <div className="mainContainer">
-      <div id="banner"></div>
+      <div id="banner">
+        <img
+          id="banner-logo"
+          src="../assets/CaveGen.png"
+        />
+      </div>
       <div id="sliders">
         <SlidersModule
           length={length}

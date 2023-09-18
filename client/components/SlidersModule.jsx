@@ -33,10 +33,11 @@ const SlidersModule = ({
     <div className="slidersModule">
       <div className="slider-container">
         <div id="gridSlider">
-          <label>Grid Size:</label>
+          <label>Size: {length}</label>{' '}
           <span className="slider-minValue">20</span>
           {/* if min/max changed, update range of randomSliders */}
           <input
+            className="slider"
             type="range"
             min="20"
             max="120"
@@ -44,12 +45,12 @@ const SlidersModule = ({
             onChange={(e) => setLength(e.target.value)}
           />
           <span className="slider-maxValue">120</span>
-          <p className="slider-curValue">{length}</p>
         </div>
         <div id="fillSlider">
-          <label> Fill Percentage: </label>
+          <label> Fill: {fill}% </label>
           <span className="slider-minValue">35</span>
           <input
+            className="slider"
             type="range"
             min="35"
             max="50"
@@ -58,12 +59,12 @@ const SlidersModule = ({
             onChange={(e) => setFill(e.target.value)}
           />
           <span className="slider-maxValue">50</span>
-          <p className="slider-curValue">{fill}%</p>
         </div>
         <div id="smoothingSlider">
-          <label>Smoothing Iterations:</label>
+          <label>Smoothing: {smooth}</label>
           <span className="slider-minValue">0</span>
           <input
+            className="slider"
             type="range"
             min="0"
             max="20"
@@ -71,7 +72,6 @@ const SlidersModule = ({
             onChange={(e) => setSmooth(e.target.value)}
           />
           <span className="slider-maxValue">15</span>
-          <p className="slider-curValue">{smooth}</p>
         </div>
         <div id="randomizeSliders">
           <button onClick={randomizeSliders}>Randomize Sliders</button>
