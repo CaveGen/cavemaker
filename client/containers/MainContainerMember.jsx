@@ -46,7 +46,10 @@ const MainContainerMember = (props) => {
 
   return (
     <div className="mainContainer">
-      <div id="banner"></div>
+      <div id="banner">
+        <img src="../assets/cavegen.png" />
+      </div>
+
       <div id="sliders">
         <SlidersModule
           length={length}

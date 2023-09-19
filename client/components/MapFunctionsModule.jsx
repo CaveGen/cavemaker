@@ -210,7 +210,6 @@ const MapFunctionsModule = ({ svgRef, username }) => {
       <div className="mapFunctionsContainer">
         <div className="shareAndNameMap">
           <label htmlFor="shareAndNameMap">
-            Name Map:
             <input
               type="text"
               name="mapName"
@@ -226,7 +225,7 @@ const MapFunctionsModule = ({ svgRef, username }) => {
                 addMapToPublicCollection({ svgRef, mapNameState, username })
               }
             >
-              Add to Public Collection
+              Add to Public Collection |
             </button>
             <button
               className="mapFunctionsButtons"
@@ -235,14 +234,14 @@ const MapFunctionsModule = ({ svgRef, username }) => {
                 saveMapToPrivateCollection({ svgRef, mapNameState, username })
               }
             >
-              Add to Private Collection
+              Add to Private Collection |
             </button>
             <button
               className="mapFunctionsButtons"
               id="saveMapImageButton"
               onClick={() => downloadMapImage({ svgRef })}
             >
-              Download Map
+              Download Map |
             </button>
             <button
               className="mapFunctionButtons"
@@ -264,7 +263,6 @@ const MapFunctionsModule = ({ svgRef, username }) => {
         </div>
         <div className="addOrRemoveFriends">
           <label htmlFor="addOrRemoveFriends">
-            Friend Name:
             <input
               type="text"
               name="friendName"

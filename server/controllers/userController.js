@@ -1,4 +1,5 @@
 const User = require('../models/userModel.js');
+const Session = require('../models/sessionModel.js');
 
 const userController = {};
 
@@ -276,4 +277,57 @@ userController.getPrivateMaps = (req, res, next) => {
     });
 };
 
+userController.setSSIDCookie = (req, res, next) => {
+  if (res.locals.login) {
+    //first checking if login was successful, if not, skip ahead to next middleware
+    res.cookie('ssid', res.locals.id, {
+      // grabbing user's database ID = the value of ssid cookie --> will be used for session verification (below)
+      httpOnly: true,
+    });
+  }
+  return next();
+};
+userController.startSession = (req, res, next) => {
+  if (res.locals.login) {
+    Session.create({
+      cookieId: res.locals.id,
+      createdAt: Date.now(),
+    })
+      .then((created) => next())
+      .catch((err) => {
+        const error = { log: 'error starting a new session, on login attempt' };
+        return next(error);
+      });
+  }
+  return next(); //if res.locals.result === false, then login was unsuccessful and we should skip functionality and go straight to next (server handled login error)
+};
+userController.isLoggedIn = (req, res, next) => {
+  const ssid = res.cookie.ssid;
+  if (!ssid) {
+    return res.status(401).json({
+      success: false,
+      message:
+        'User login check, failed - COOKIES NOT FOUND... Please log in again.',
+    });
+  }
+  Session.findOne({ cookieId: ssid })
+    .then((session) => {
+      if (!session) {
+        return res.status(401).json({
+          success: false,
+          message:
+            'User login check, failed - ACTIVE USER SESSION NOT FOUND IN DATABASE... Please log in again.',
+        });
+      }
+      return next();
+    })
+    .catch((err) => {
+      const error = {
+        success: false,
+        message:
+          'ERROR - checking if user logged in - caught error in looking for (active) session in database',
+      };
+      return next(error);
+    });
+};
 module.exports = userController;
