@@ -1,17 +1,55 @@
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <link
+      rel="preconnect"
+      href="https://fonts.googleapis.com"
+    />
+    <link
+      rel="preconnect"
+      href="https://fonts.gstatic.com"
+      crossorigin
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=VT323&display=swap"
+      rel="stylesheet"
+    />
     <title>Cave</title>
-    <link rel="stylesheet" href="style.css">
-</head>
+    <!-- <link
+      rel="stylesheet"
+      href="style.css"
+    /> -->
+    <link
+      rel="stylesheet"
+      href="newStyle.css"
+    />
+  </head>
 
-<body>
-    <div id="board-wrapper">
-        <div id="content"></div>
+  <body>
+    <div id="audio-container">
+      <audio
+        controls
+        volume="0.2"
+        loop
+      >
+        <source
+          src="./assets/CaveMaker.mp3"
+          type="audio/mpeg"
+        />
+        Your browser does not support the audio element.
+      </audio>
+      <span>Click to control background music</span>
     </div>
-    <script type="text/javascript" src="./build/bundle.js"></script>
-</body>
-
+    <div id="board-wrapper">
+      <div id="content"></div>
+    </div>
+    <script
+      type="text/javascript"
+      src="./build/bundle.js"
+    ></script>
+  </body>
 </html>
